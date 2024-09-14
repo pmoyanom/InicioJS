@@ -74,5 +74,5 @@ document.write('Hora: ', fecha.getHours() + "<br>"); //Devuelve la hora
 document.write('Minutos: ', fecha.getMinutes() + "<br>"); //Devuelve los minutos
 document.write('Hora: ', fecha.getHours(), ':', fecha.getMinutes(), ':', fecha.getSeconds() + "<br>"); //Devuelve la hora y minutos en la misma línea 
 document.write('<br>');
-//
+*/
 //Los métodos de la clase Date son muy utilizados en aplicaciones web para mostrar la fecha y hora actual,
