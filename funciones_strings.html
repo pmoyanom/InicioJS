@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let palabra = 'JavaScript';
+        document.write('La palabra es: ',palabra + '<br>');
+
+        //ver tamaño de la palabra
+        document.write('El tamaño de la palabra es: ',palabra.length + '<br>');
+
+        //ver caracteres específicos de un texto, espedificamos un rango no tiene que comenzar en 0
+        document.write('Primeras 4 letras: ',palabra.slice(0,4) + '<br>');
+        //también se puede hacer con substring
+        document.write('Primeras 4 letras: ',palabra.substring(0,4) + '<br>');
+
+        //cambiar valores en un texto
+        let saludo = 'Hola a todos';
+        saludo = saludo.replace('Hola','Adios');
+        document.write('Cambiando Hola por Adios: ',saludo + '<br>');
+
+        //pasar a mayúsculas
+        document.write('Pasando a mayúsculas: ',palabra.toUpperCase() + '<br>');
+
+        //pasar a minúsculas
+        document.write('Pasando a minúsculas: ',palabra.toLowerCase() + '<br>');
+
+        //concatenar texto
+        let texto1 = 'Curso de ';
+        let texto2 = 'JavaScript';
+        document.write('Concatenando texto: ',texto1.concat(texto2) + '<br>');
+
+        //acortar espacios en blanco, ahora no se ve en el navegador, pero cuando diseñemos web sí se verá
+        let texto3 = '    Curso de JavaScript    ';
+        document.write('Acortando espacios en blanco: ',texto3.trimStart() + '<br>');// quita los del lado derecho
+        document.write('Acortando espacios en blanco: ',texto3.trimEnd() + '<br>');// quita los del lado izquierdo
+        document.write('Acortando espacios en blanco: ',texto3.trim() + '<br>');// quita los de ambos lados
+
+        //cortar cantidad de caracteres
+        let texto4 = 'Curso de JavaScript';
+        document.write('Cortando texto: ',texto4.substr(0,5) + '<br>');//corta desde la posición 0 y muestra 5 caracteres
+        let texto5 = 'Curso de JavaScript';
+        document.write('Cortando texto: ',texto5.split('Script') + '<br>');//corta de la variable el texto que especifico
+    </script>
+</body>
+</html>

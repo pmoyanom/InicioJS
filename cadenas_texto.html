@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let texto1 = 'JavaScript';
+        document.write(texto1 + '<br>');
+        let texto2 = "JavaScript";
+        document.write(texto2 + '<br>');
+        //Puedo llevar el texto a la pantalla con comillas dobles o simples
+        //PEro si quiero llevar un texto con comillas dobles y simples, debo hacerlo con comillas simples
+        //ver ejemplo
+        let texto3 = 'JavaScript "Curso"';
+        document.write(texto3 + '<br>');
+        //Otra forma de llevar un texto con comillas dobles y simples
+        let texto4 = "JavaScript 'Curso'";
+        document.write(texto4 + '<br>');
+        document.write('<br>');
+        
+        //Si quiero sacar por pantalla un texto que tiene varias líneas
+       /* let texto5 = ' Vamos a poner en varias
+        lineas informacion sobre 
+        Curso JavaScript'; //Esto no se puede hacer*/
+
+        //Tenemos dos opciones para hacerlo
+        let texto5 = ' Vamos a poner en varias '+
+        'lineas informacion sobre '+
+        'Curso JavaScript'; 
+        document.write(texto5 + '<br>');
+        document.write('<br>');
+
+        //Tenemos dos opciones para hacerlo
+        let texto6 = ' Vamos a poner en varias \
+        lineas informacion sobre \
+        Curso JavaScript'; 
+        document.write(texto6 + '<br>');
+        document.write('<br>');
+
+        //Si queremos que aparezca en pantalla en varias líneas diferentes
+        // tenemos que hacerlo con etiquetas html <br>
+        // ver ejemplo
+        let texto7 = ' Vamos a poner en varias <br> \
+        lineas informacion sobre <br> \
+        Curso JavaScript';
+        document.write(texto7 + '<br>');
+        document.write('<br>');
+
+        let texto8 = ' Vamos a poner en varias '+'<br>'+
+        'lineas informacion sobre '+'<br>'+
+        'Curso JavaScript'; 
+        document.write(texto8 + '<br>');
+        document.write('<br>');
+
+    </script>
+</body>
+</html>
