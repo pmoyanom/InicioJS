@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Seleccione disponibilidad de horario</h4>
+    <form>
+        <input type="radio" name="horario" id="radio1"> Mañana <br>
+        <input type="radio" name="horario" id="radio2"> Tarde <br>
+        <input type="radio" name="horario" id="radio3"> Noche <br>
+        <input type="button" value="Enviar" onclick="seleccion()">
+    </form>
+    <script>
+        function seleccion(){ // los radio buttons son de selección única, por lo que no es necesario validar que solo se pueda seleccionar uno
+            let horario = '';
+            if(document.getElementById('radio1').checked){
+                horario = 'Mañana';
+                alert('Usted seleccionó el horario de ' + horario + '. Horario de 8am a 12pm');
+            }
+            if(document.getElementById('radio2').checked){
+                horario = 'Tarde';
+                alert('Usted seleccionó el horario de ' + horario + '. Horario de 2pm a 6pm');
+            }
+            if(document.getElementById('radio3').checked){
+                horario = 'Noche';
+                alert('Usted seleccionó el horario de ' + horario + '. Horario de 7pm a 11pm');
+            }
+           
+        }
+
+</script>
+
+</body>
+</html>

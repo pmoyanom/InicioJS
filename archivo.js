@@ -2,9 +2,9 @@ var nombre;
 nombre = 'Pedro';
 var Nombre = 'Juan';
 
-document.write(Nombre);
-document.write(nombre);
+//document.write(Nombre);
+//document.write(nombre);
 
-//console.log(nombre);
-//console.log(Nombre);
+console.log(nombre);
+console.log(Nombre);
 //prueba para ver si se sube a git
