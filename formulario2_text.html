@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULARIO 2 SELECCIÓN TEXTO</title>
+</head>
+<body>
+    <h4>CONTROL ACCESO USUARIOS</h4><br>
+    <form>
+        Introduce el usuario: <br>
+        <input type="text" id="usuario"><br><br>
+        Introduce la clave: <br>
+        <input type="password" id="clave"><br><br>
+        <input type="button" value="Aceptar" onclick="validar()">
+    </form>
+    <script>
+        let control = 0;
+        let contrasenia = '1234';
+        function validar(){
+            let usuario = document.getElementById('usuario').value;
+            let clave = document.getElementById('clave').value;
+            if(usuario == 'admin' && clave == contrasenia){
+                alert('ACCESO PERMITIDO');
+                window.open('https://www.google.com');
+            }else{
+                control++;
+                if(control == 3){
+                    alert('INTENTOS AGOTADOS, USUARIO BLOQUEADO\
+                    \nCONTACTE AL ADMINISTRADOR');
+                    //document.getElementById('usuario').disabled = true; //desactiva el campo usuario
+                    //document.getElementById('clave').disabled = true;//desactiva el campo clave
+                }else{
+                    alert('USUARIO O CLAVE INCORRECTO, INTENTE DE NUEVO MAX. 3 INTENTOS');
+                }
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>
