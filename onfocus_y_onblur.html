@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Introducimos los datos</h4>
+    <form>
+        Nombre<br>
+        <input type="text" id="nombre" onfocus="vaciar(this)" onblur="f_blur()" value="nombre">
+        <br><br>
+        Edad<br>
+        <input type="text" id="edad" onfocus="vaciar(this)" value="edad">
+        <br><br>
+        <input type="button" value="Ingresar" onclick="verificar()">
+    </form>
+    <script>
+        //Estudiamos el comportamiento de los eventos onfocus y onblur
+        function vaciar(control){
+            control.value = ""; //vaciamos el cuadro de texto cuando se hace click   
+            control.style.background = 'white'; //Para quitar el color rojo
+            //document.getElementById('nombre').value = ""; //Otra forma de vaciar el cuadro de texto.
+        }
+
+        function f_blur(){
+            if(document.getElementById('nombre').value == ""){
+                document.getElementById('nombre').style.background = 'red';//Si sale sin poner nada pintamos el cuadro en rojo
+                alert('Debe ingresar un nombre');// Mostramos un mensaje de alerta
+            }
+            else
+            alert('Ha salido del cuadro de texto');// Mostramos un mensaje de alerta
+        }
+
+        function verificar(){
+            alert('Verificando datos');// Mostramos un mensaje de alerta
+        }
+
+    </script>
+    
+</body>
+</html>

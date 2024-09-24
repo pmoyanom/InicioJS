@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><textarea id="texto" rows="10" cols="35" maxlength="140" onfocus="vaciar(this)"></textarea></p><!--onfocus es opcional, sólo para que vacíe el cuadro te texto, puede no ser últil-->
+    <p> Caracteres disnpnibles:
+        <span id="cantidad">20</span>
+    </p>
+    <script>
+        document.getElementById("texto").addEventListener("keyup", caracteres);//addEventListener es un metodo que permite añadir un evento a un objeto, keyup es un evento que se dispara cuando se pulsa una tecla
+        
+        function caracteres(){
+            let cant = document.getElementById("texto").value.length;
+            let disponible = 20 - parseInt(cant);
+            document.getElementById("cantidad").innerHTML = disponible; //innerHTML es una propiedad que permite obtener o establecer el contenido HTML de un elemento en formato de cadena
+            if(disponible == 0){
+              alert("No puedes escribir más caracteres");
+            }
+        }
+    </script>
+</body>
+</html>

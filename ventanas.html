@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h5>Fucniones OPEN y CONFIRMAR</h5>
+    <form>
+        Abrir en otra pestaña<br>
+        <input type="button" value="Abrir_pest" onclick="abrir()"><br><br>
+        Abrir en otra ventana<br>
+        <input type="button" value="Abrir_vent" onclick="ventana()"><br><br>
+        IR a otra página, VAMOS A WIKIPEDIA<br><br>
+        <input type="button" value="Ir_pagina" onclick="redireccionar()"><br><br>
+        <input type="button" value="Salir" onclick="confirmar()"><br><br>
+    </form>
+    <script>
+        function abrir(){
+            let ventana = open();
+            ventana.document.write('Otra pestaña de página web abierta');
+        }
+        function ventana(){
+            let ventana = open('','',"width=400,height=250"); // las comillas vacias son para que no se abra en otra pestaña
+            ventana.document.write('Abrimos página web en otra ventana nueva');
+        }
+        function redireccionar(){
+            if(window.confirm('¿Desea abandornar esta página e ir a la página de Wikipedia?')){
+                window.location.href = ('https://es.wikipedia.org', '_blank');
+                //Por defecto se abre en la misma ventana y se pierde la página actual
+                //Con el target='_blank' se abre en una nueva pestaña, ejemplo: window.open('https://es.wikipedia.org', '_blank');
+            }
+        }
+        function confirmar(){
+            let respuesta = confirm('¿Desea salir de la página?');
+            if(respuesta == true){
+                window.close(); // cierra la ventana actual
+            }
+        }
+
+
+
+    </script>
+
+</body>
+</html>
