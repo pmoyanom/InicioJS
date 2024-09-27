@@ -13,6 +13,7 @@ document.write(nombre);
 document.write('<br>');
 document.write(cantidad);
 document.write('<br>');
+console.log(cantidad+precio);
 document.write(precio);
 document.write('<br>');
 document.write(esVerdadero);
@@ -69,34 +70,35 @@ document.write('<br>');
         let precio = 500;
 
         document.write(nombre + " - " + apellido);
+        console.log(nombre + " - " + apellido);
         document.write("<br>");
         document.write('Nombre: ' + nombre + ' - Apellido: ' + apellido);
         document.write("<br>");
+        console.log('Nombre: ' + nombre + ' - Apellido: ' + apellido);
         let saluddo = nombre.concat(apellido);
         document.write(saluddo);
         document.write("<br>");
+        console.log(saluddo);
         document.write('El precio es: ' + precio);
         document.write("<br>");
+        console.log('El precio es: ' + precio);
         document.write('====================================<br>');
         document.write(nombre,' ', apellido);
         document.write("<br>");
         document.write('El precio es: ', precio);
+
 */
 
 
 
-
 // OPERADORES DE ASIGNACIÓN, INCREMENTO Y DECREMENTO
-/*
-let a = 1;
 
+let a = 1;
 console.log('Valor de a: ', a);
 document.write('Valor de a: ', a + "<br>");
 a++; // aumenta valor en 1
 console.log('Valor de a: ', a);
 document.write('Valor de a: ', a + "<br>");
-
-
 a+=5; // aumenta valor en el valor después del igual, dependiendo de lo que pongamos
 document.write('Valor de a: ', a + "<br>");
 a--; // disminuye valor en 1
@@ -111,7 +113,8 @@ a**=2; // eleva valor en el valor después del igual, dependiendo de lo que pong
 document.write('Valor de a: ', a + "<br>");
 a%=2; // obtiene el residuo de la división del valor entre el valor después del igual, dependiendo de lo que pongamos
 document.write('Valor de a: ' , a + "<br>");
-*/
+
+
 
 
 /*
