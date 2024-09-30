@@ -41,14 +41,34 @@ for (let i = 1; i <= 10; i++) {
 */
 
 
+
+
+
+
+
+
 //5. Contar Vocales en una Cadena
 /*
 const readline = require('readline-sync');
 
 let cadena = readline.question("Introduce una cadena: ");
+// Utiliza una expresión regular para buscar todas las vocales en la cadena, 
+//tanto en mayúsculas como en minúsculas.
+// La función match() devuelve un array con todas las coincidencias encontradas.
+// Si no se encuentran vocales, se devuelve un array vacío gracias al operador `|| []`,
+// lo que evita un error.
+// Finalmente, se cuenta el número de elementos en el array resultante con la propiedad length.
 let contadorVocales = (cadena.match(/[aeiouAEIOU]/g) || []).length;
 console.log(`La cadena tiene ${contadorVocales} vocales.`);
 */
+
+
+
+
+
+
+
+
 
 //6. Array de Nombres. Declara un array con tres nombres y usa un bucle for para imprimir cada nombre en la consola.
 /*

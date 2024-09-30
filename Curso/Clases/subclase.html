@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subclases 01</title>
+</head>
+<body>
+    <script>
+        class Deportista{
+            constructor(nombre, edad, altura, peso){
+                this.nombre = nombre;
+                this.edad = edad;
+                this.altura = altura;
+                this.peso = peso;
+            }
+            mostrar(){
+                console.log(`Nombre: ${this.nombre}, Edad: ${this.edad}, Altura: ${this.altura}, Peso: ${this.peso}`);
+            }
+        }
+        class Futbolista extends Deportista{ //Heredamos de la clase Deportista
+            constructor(nombre, edad, altura, peso, posicion, equipo){
+                super(nombre, edad, altura, peso);
+                this.posicion = posicion;
+                this.equipo = equipo;
+                this._goles = goles; //Añadimos una propiedad privada ( para estudiar setter y getter)
+            }
+            get goles(){ //Creamos un getter para acceder a la propiedad privada
+                return this._goles;
+            }
+            set goles(goles){ //Creamos un setter para modificar la propiedad privada
+                this._goles = goles;
+            }
+            mostrar(){
+                super.mostrar();
+                console.log(`Posicion: ${this.posicion}, Equipo: ${this.equipo}`);
+            }
+        }
+        let futbolista1 = new Futbolista('Antonie Griezman', 33, 1.70, 72, 'Delantero', 'Atlético de Madrid', 10);
+        let futbolista2 = new Futbolista('Julian Álvarez', 20, 1.75, 71, 'Delantero', 'Atlético de Madrid', 5);
+        futbolista1.mostrar();
+    </script>
+</body>
+</html>

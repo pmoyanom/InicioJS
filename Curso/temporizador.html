@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="misestilos.css">
+</head>
+<body onload="comnezarReloj()">
+    <input type="number" id="tiempoelegido">
+    <button onclick="comenzarTiempo()">Alarma</button>
+   <!-- <h1 id="textoalarma" style="color: red;">APAGADO</h1>-->
+    <h1 id="textoalarma">00:00:00</h1>
+    
+    <audio controls id="audioAlarma"><!--controls es para que se vea o no el control de sonido-->
+        <source src="sonidos/alarma.mp3" type="audio/mpeg">
+        Sonido no soportado
+    </audio>
+
+    <script src="temporiza.js"></script>
+</body>
+</html>
