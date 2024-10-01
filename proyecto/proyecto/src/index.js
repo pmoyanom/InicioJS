@@ -27,6 +27,7 @@ const pokemons = [
 ];
 
 // Selección aleatoria de Pokémon para el jugador y la máquina
+// Se elige un Pokémon aleatoriamente para el jugador y otro para la máquina usando Math.random()
 var playerPokemon = pokemons[Math.floor(Math.random() * pokemons.length)];
 var enemyPokemon = pokemons[Math.floor(Math.random() * pokemons.length)];
 
@@ -47,15 +48,17 @@ function playerTurn(player, enemy) {
     const action = readline.question('Elige una acción (1 o 2): ');
 
     if (action === '1') {
+         // Si elige atacar, muestra la lista de movimientos y permite seleccionar uno
         console.log(`\nElige un movimiento:`);
         player.moves.forEach((move, index) => {
             console.log(`${index + 1}. ${move.name} (Daño: ${move.damage})`);
         });
         const moveIndex = readline.questionInt('Selecciona el movimiento: ') - 1;
         const selectedMove = player.moves[moveIndex];
-
+        // Se ejecuta el ataque
         player.attack(enemy, selectedMove);
     } else if (action === '2') {
+        // Si elige curarse, ejecuta la curación
         player.heal();
     } else {
         console.log('Acción no válida.');
@@ -64,14 +67,18 @@ function playerTurn(player, enemy) {
 
 // Función para ejecutar el turno de la máquina
 function enemyTurn(enemy, player) {
+     // Muestra el estado de los Pokémon antes del turno de la máquina
     showPokemonStatus(player, enemy);
     console.log(`\nTurno de la máquina!`);
+    // La máquina decide aleatoriamente entre atacar o curarse (probabilidad 50%) y selecciona un movimiento al azar
     const action = Math.random() < 0.5 ? 'attack' : 'heal';
 
     if (action === 'attack' || enemy.healUsed) {
+        // Si decide atacar o si ya se ha curado antes, elige un movimiento aleatorio
         const randomMove = enemy.moves[Math.floor(Math.random() * enemy.moves.length)];
         enemy.attack(player, randomMove);
     } else {
+        // Si decide curarse y no ha usado la curación antes, se cura
         enemy.heal();
     }
 }
@@ -79,17 +86,21 @@ function enemyTurn(enemy, player) {
 // Ciclo principal del combate
 function battle(player, enemy) {
     console.log('¡Comienza la batalla Pokémon!');
+    //Muestra el estado de los Pokémon al inicio del combate
     showPokemonStatus(player, enemy);
 
+   // El combate continúa hasta que uno de los Pokémon tenga 0 HP
     while (player.hp > 0 && enemy.hp > 0) {
         playerTurn(player, enemy);
         if (enemy.hp <= 0) {
+              // Si el enemigo ha sido derrotado, el jugador gana
             console.log(`\n¡${enemy.name} ha sido derrotado! ¡Has ganado!`);
             break;
         }
-
+        //Turno de la máquina si el enemigo sigue vivo
         enemyTurn(enemy, player);
         if (player.hp <= 0) {
+            // Si el jugador ha sido derrotado, la máquina gana
             console.log(`\n¡${player.name} ha sido derrotado! ¡La máquina gana!`);
             break;
         }
