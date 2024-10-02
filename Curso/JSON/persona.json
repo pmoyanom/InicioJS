@@ -1,0 +1,13 @@
+{
+    "nombre": "Juan Gonzalez",
+    "edad": 30,
+    "estudiante": true,
+    "direccion": {
+        "calle": "Calle San Justo",
+        "ciudad": "Caceres"
+    },
+    "telefonos": [
+        "666666666",
+        "927654321"
+    ]
+}

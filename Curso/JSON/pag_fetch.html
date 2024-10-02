@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON2</title>
+</head>
+<body>
+    <div id="nombre"></div>
+    <script>
+        let datosJson;
+        fetch('persona.json')
+            .then(response => response.json()) //HAcemos la llamada una vez que se resuelva la promesa
+            .then((salida) => {
+                datosJson = salida;
+                let elementoTexto = document.getElementById("nombre");
+                elementoTexto.textContent = datosJson.nombre;
+            })
+
+    </script>
+    
+</body>
+</html>

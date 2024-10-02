@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <div id="nombre"></div>
+    <script>
+        let datosJson;
+        let xhr = new XMLHttpRequest();//Objeto para hacer peticiones
+        xhr.open('GET', 'persona.json', true);//Abrir la peticion, tres parametros, metodo, url, asincrono(true) o sincrono(false)
+        xhr.responseType = 'json';//Tipo de respuesta que se espera
+        xhr.onload = function(){//Funcion que se ejecuta cuando la peticion se completa
+            if(xhr.status === 200)//Si la peticion se completo correctamente
+            {
+                datosJson = xhr.response;//Se guarda la respuesta en la variable datosJson
+                let elemetoTexto = document.getElementById("nombre");//Se guarda en una variable el div con id nombre
+                elementoTexto.textContent = datosJson.nombre;//Se muestra el nombre en el div con id nombre*/
+            }
+            else {
+               console.log('Error al cargar el archivo');
+            }
+        }
+        xhr.send();//Se envia la peticion
+    </script>
+</body>
+</html>
