@@ -10,12 +10,15 @@
     <script>
         let datosJson;
         fetch('persona.json')
-            .then(response => response.json()) //HAcemos la llamada una vez que se resuelva la promesa
+            .then(res => res.json()) //HAcemos la llamada una vez que se resuelva la promesa
             .then((salida) => {
                 datosJson = salida;
                 let elementoTexto = document.getElementById("nombre");
                 elementoTexto.textContent = datosJson.nombre;
             })
+            .catch((error) => {
+                alert(error);
+            });
 
     </script>
     

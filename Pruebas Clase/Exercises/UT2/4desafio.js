@@ -23,7 +23,7 @@ console.log("Contraseña generada: " + generarContraseña(longitud));
 
 //2. Calculadora de Edad. Pide al usuario su fecha de nacimiento y calcula su edad actual.
 // Usa la clase Date para realizar los cálculos.
-/*
+
 const readline = require('readline-sync');
 
 let fechaNacimiento = readline.question("Introduce tu fecha de nacimiento (YYYY-MM-DD): ");
@@ -32,7 +32,7 @@ let fecha = new Date(fechaNacimiento);
 // 'new Date().getFullYear()' obtiene el año actual, y 'fecha.getFullYear()' obtiene el año de la fecha de nacimiento.
 let edad = new Date().getFullYear() - fecha.getFullYear();
 console.log("Tu edad es: " + edad + " años.");
-*/
+
 
 //3. Fibonacci con Bucle. Crea un programa que genere la secuencia de Fibonacci hasta el décimo término usando un bucle.
 // Secuencia Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
