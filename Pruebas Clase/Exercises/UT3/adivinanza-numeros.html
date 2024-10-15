@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 250px;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #mensaje {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            background-color: #ffffff;
+            min-height: 50px;
+            width: 60%;
+            text-align: center;
+        }
+
+        /* Animación de entrada del mensaje */
+        #mensaje.aparecer {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Juego de Adivinanza</h1>
+    <p>Adivina un número entre 1 y 100</p>
+    <input type="number" id="inputNumero" placeholder="Ingresa un número">
+    <button onclick="adivinar()">Adivinar</button>
+    <p id="mensaje"></p>
+
+    <script>
+        let numeroSecreto = Math.floor(Math.random() * 100) + 1;
+        let intentos = 0;
+
+        function adivinar() {
+            const input = document.getElementById("inputNumero").value;
+            const mensaje = document.getElementById("mensaje");
+            intentos++;
+            if (input == numeroSecreto) {
+                mensaje.innerText = `🎉 ¡Correcto! Lo adivinaste en ${intentos} intentos.`;
+                mensaje.style.color = '#28a745';
+                mensaje.classList.add('aparecer');
+            } else if (input > numeroSecreto) {
+                mensaje.innerText = "📉 Demasiado alto. Intenta de nuevo.";
+                mensaje.style.color = '#dc3545';
+                mensaje.classList.add('aparecer');
+            } else {
+                mensaje.innerText = "📈 Demasiado bajo. Intenta de nuevo.";
+                mensaje.style.color = '#ffc107';
+                mensaje.classList.add('aparecer');
+            }
+        }
+    </script>
+</body>
+
+</html>

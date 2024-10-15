@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+
+        #palabra {
+            font-size: 2rem;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            width: 50px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #31b0d5;
+        }
+
+        #mensaje {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        #ahorcado {
+            margin-top: 20px;
+        }
+
+        .partes {
+            width: 100px;
+            height: 100px;
+            border: 5px solid #d9534f;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.2;
+            margin: 0 5px;
+            transition: opacity 0.5s;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Juego del Ahorcado</h1>
+
+    <div id="palabra">_ _ _ _ _</div>
+    <p class="info">Intentos restantes: <span id="intentos">6</span></p>
+
+    <input type="text" id="letra" maxlength="1" placeholder="Letra">
+    <button onclick="adivinar()">Adivinar</button>
+
+    <div id="mensaje"></div>
+
+    <!-- Parte visual del ahorcado -->
+    <div id="ahorcado">
+        <div class="partes" id="cabeza"></div>
+        <div class="partes" id="cuerpo"></div>
+        <div class="partes" id="brazoIzq"></div>
+        <div class="partes" id="brazoDer"></div>
+        <div class="partes" id="piernaIzq"></div>
+        <div class="partes" id="piernaDer"></div>
+    </div>
+
+    <script>
+        let palabraSecreta = "JUEGO";
+        let intentos = 6;
+        let palabraAdivinada = "_ _ _ _ _".split(" ");
+        let partesAhorcado = ['cabeza', 'cuerpo', 'brazoIzq', 'brazoDer', 'piernaIzq', 'piernaDer'];
+
+        function adivinar() {
+            const letra = document.getElementById("letra").value.toUpperCase();
+            const mensaje = document.getElementById("mensaje");
+            let acierto = false;
+
+            if (!letra) {
+                mensaje.innerText = "Por favor, ingresa una letra.";
+                return;
+            }
+
+            for (let i = 0; i < palabraSecreta.length; i++) {
+                if (palabraSecreta[i] === letra) {
+                    palabraAdivinada[i] = letra;
+                    acierto = true;
+                }
+            }
+
+            document.getElementById("palabra").innerText = palabraAdivinada.join(" ");
+
+            if (!acierto) {
+                intentos--;
+                document.getElementById("intentos").innerText = intentos;
+                mostrarParteAhorcado();
+                if (intentos === 0) {
+                    mensaje.innerText = "¡Perdiste! La palabra era: " + palabraSecreta;
+                }
+            }
+
+            if (!palabraAdivinada.includes("_")) {
+                mensaje.innerText = "¡Ganaste!";
+            }
+
+            document.getElementById("letra").value = "";
+        }
+
+        function mostrarParteAhorcado() {
+            const parte = document.getElementById(partesAhorcado[6 - intentos]);
+            if (parte) {
+                parte.classList.add('visible');
+            }
+        }
+    </script>
+</body>
+
+</html>
