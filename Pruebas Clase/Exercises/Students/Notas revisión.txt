@@ -1,0 +1,11 @@
+Paula
+Revisión avanzados: El primer ejercicio de la calculadora, pide usar un switch para elegir la operación y no contempla el caso de que no pongamos uno de los operadores válidos. El ejercicio 2 si ponemos más de un espacio en blanco nos cuenta como palabras, no funciona de forma correcta. Ejercicio 3 correcto, Ejercicio 4 correcto, Ejercicio 5 correcto. Círculo y sistema de notas correcto, el ejercicio de las tareas era más sencillo, pero correcto, veo además que has hecho 5 ejercicios del Desafío y se valora positivamente todo en inglés.
+
+Sergio
+Revisión avanzados: Calculadora básica correcto, Contar palabras no funciona muestra siempre undefined, error tipográfico, invertir cadena correcto, comparar números correcto, número primo mejorable pero funciona, círculo podemos usar la funcion math.Pi pero funciona, ejercicio notas no era lo que se pedía, gestión tareas era más sencillo lo que se pedía correcto, además has hecho casi todos los del avanzando, recuerda los comentarios en inglés.
+
+Cristobal
+Revisión avanzados: Calculadora correcto, contar palabras correcto, invertir cadena correcto, mayor de tres números correcto, número primo mejorable pero correcto, círculo correcto, sistema de notas correcto, tareas era más sencillo, pero bien; además has hecho casi todos del desafío, recuerda los comentarios en inglés.
+
+Daniel
+Revisión avanzados: Calculadora no contemplamos operador no válido o división por cero, contador de palabras ok, invertir frase no funciona error en la declaración de variables, comparar 3 números exceso de comparaciones innecesarias, damos el teorema de Wilson por válido, círculo correcto, notas correcto, gestor tareas era más sencillo pero correcto, bien los comentarios de todos en inglés, además has hecho varios del desafío.

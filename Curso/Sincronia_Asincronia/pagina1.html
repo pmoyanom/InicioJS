@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sincronia y Asincronia</title>
+</head>
+<body>
+    <script>
+        //Acción 1
+        console.log('Hola Mundo sincrono');
+        //Acción 2 con el for sería el comportamiento normal esperando a que termine para ejecutar la siguiente acción
+        /*for (let f = 0; f < 10; f++) {
+            console.log(f);
+        }*/
+        //Acción 2 con el setTimeout sería el comportamiento asincrono, no espera a que termine para ejecutar la siguiente acción
+        setTimeout(() => {
+            for (let f = 0; f < 10; f++) {
+                console.log(f);
+            }
+        }, 0);
+        //Acción 3
+        console.log('Adios Mundo sincrono');
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CallBacks</title>
+</head>
+<body>
+    <script>
+        function avanzaFila(callback) {
+            setTimeout(function() {
+                console.log('Tu turno ha llegado');
+                callback();
+            }, 5000); //Espera 5 segundos y manda el mensaje
+        }
+        function llamada() {
+            console.log('Te presentas a tu turno');
+        }
+        console.log('Llegas a la fila');
+
+        avanzaFila(llamada);
+        
+        console.log('Te vas de la fila');
+
+    </script>
+</body>
+</html>
