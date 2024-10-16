@@ -10,7 +10,7 @@ function ejercicioMinMaxAbs() {
         let inputValido = false;
         while (!inputValido) {
             // Solicitamos al usuario que ingrese un número
-            let numero = parseInt(readline.question(`Introduce el número ${i + 1} de 5:`));
+            let numero = parseInt(readline.question(`Insert the number ${i + 1} of 5:`));
 
             // Convertimos la entrada a un número flotante
             numero = parseFloat(numero);
@@ -20,13 +20,13 @@ function ejercicioMinMaxAbs() {
                 numeros.push(numero); // Añadimos el número al array
                 inputValido = true; // Salimos del bucle interno
             } else {
-                console.log("Entrada inválida. Por favor, introduce un número válido.");
+                console.log("Invalid entry. Please enter a valid number.");
             }
         }
     }
 
     // Mostramos los números ingresados por el usuario
-    console.log("Números ingresados:", numeros);
+    console.log("Inserted numbers:", numeros);
 
     // Utilizamos Math.max y Math.min para encontrar el número mayor y menor
     let numeroMayor = Math.max(...numeros); // El operador ... (spread) expande el array en argumentos individuales
@@ -39,10 +39,10 @@ function ejercicioMinMaxAbs() {
     let valorAbsoluto = Math.abs(diferencia);
 
     // Mostramos los resultados al usuario
-    console.log(`El número mayor es: ${numeroMayor}`);
-    console.log(`El número menor es: ${numeroMenor}`);
-    console.log(`La diferencia entre el mayor y el menor es: ${diferencia}`);
-    console.log(`El valor absoluto de la diferencia es: ${valorAbsoluto}`);
+    console.log(`The biggest number is: ${numeroMayor}`);
+    console.log(`The smallest number is: ${numeroMenor}`);
+    console.log(`The difference between the biggest and the smallest is: ${diferencia}`);
+    console.log(`The absolute value of the difference is: ${valorAbsoluto}`);
 
     // Opcional: Mostrar los resultados en alertas
     //alert(`Números ingresados: ${numeros.join(", ")}`);

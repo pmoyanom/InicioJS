@@ -101,11 +101,15 @@
             intentos++;
             if (input == numeroSecreto) {
                 mensaje.innerText = `🎉 ¡Correcto! Lo adivinaste en ${intentos} intentos.`;
+                // Cambia el color del texto a verde para indicar que fue correcto
                 mensaje.style.color = '#28a745';
+                // Agrega la clase 'aparecer' al mensaje para estilos o animaciones
                 mensaje.classList.add('aparecer');
             } else if (input > numeroSecreto) {
                 mensaje.innerText = "📉 Demasiado alto. Intenta de nuevo.";
+                // Cambia el color del texto a rojo para indicar que fue incorrecto
                 mensaje.style.color = '#dc3545';
+                // Agrega la clase 'aparecer' al mensaje para estilos o animaciones
                 mensaje.classList.add('aparecer');
             } else {
                 mensaje.innerText = "📈 Demasiado bajo. Intenta de nuevo.";
