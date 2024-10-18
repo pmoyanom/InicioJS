@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata para codificación y viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULARIO SELECT OPTIONS</title>
+    <!-- Enlace a una hoja de estilo externa -->
+    <link rel="stylesheet" type="text/css" href="misestilos.css" />
+</head>
+<body>
+    <!-- Título del formulario -->
+    <h4>COLORES SEMÁFORO</h4>
+    
+    <!-- Formulario que contiene un menú desplegable (select) y varios inputs para mostrar información -->
+    <form>
+        <p>
+            <!-- Menú desplegable con opciones de colores del semáforo -->
+            <!-- Se ejecuta la función cambiarcolor() cuando se selecciona una opción -->
+            <select id="select1" onchange="cambiarcolor()">
+                <!-- Cada opción tiene un valor asociado que indica una acción -->
+                <option value="Puede continuar">Verde</option>
+                <option value="Precaución intente detenerse">Amarillo</option>
+                <option value="Debe parar STOP">Rojo</option>
+            </select>
+        </p>
+
+        <!-- Caja de texto que muestra el índice de la opción seleccionada (0 para Verde, 1 para Amarillo, 2 para Rojo) -->
+        <p>Indice seleccionado:<input type="text" id="text1" size="1"></p>
+
+        <!-- Caja de texto que muestra el nombre del color seleccionado -->
+        <p>COLOR seleccionado:<input type="text" id="text2" size="5"></p>
+
+        <!-- Caja de texto que muestra el valor (acción) de la opción seleccionada -->
+        <p>Indicación:<input type="text" id="text3" size="25"></p>
+    </form>
+
+    <!-- Script en JavaScript para manejar el cambio de opciones en el menú desplegable -->
+    <script>
+        function cambiarcolor() {
+            // Obtiene la referencia al elemento select por su id
+            let seleccion = document.getElementById('select1');
+            
+            // Actualiza el valor del input 'text1' con el índice de la opción seleccionada
+            document.getElementById('text1').value = seleccion.selectedIndex; // El índice de la opción seleccionada (0, 1, 2)
+            
+            // Actualiza el valor del input 'text2' con el texto de la opción seleccionada (Verde, Amarillo, Rojo)
+            document.getElementById('text2').value = seleccion.options[seleccion.selectedIndex].text;
+            
+            // Actualiza el valor del input 'text3' con el valor (acción) de la opción seleccionada
+            document.getElementById('text3').value = seleccion.options[seleccion.selectedIndex].value;
+        }
+    </script>
+</body>
+</html>

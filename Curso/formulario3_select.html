@@ -7,7 +7,7 @@
 </head>
 <body>
     <h4>COLORES SEMÁFORO </h4>
-    <for>
+    <form>
         <p><select id="select1" onchange="cambiarcolor()">
             <option value="Puede continuar">Verde</option>
             <option value="Precaución intente detenerse">Amarillo</option>
@@ -17,6 +17,8 @@
         <p>Indice seleccionado:<input type="text" id="text1" size="1"></p>
         <p>COLOR seleccionado:<input type="text" id="text2" size="5"></p>
         <p>Indicación:<input type="text" id="text3" size="25"></p>
+    </form>
+
     <script>
         function cambiarcolor(){
             let seleccion = document.getElementById('select1');
@@ -25,9 +27,6 @@
             document.getElementById('text3').value = seleccion.options[seleccion.selectedIndex].value;   
         }
     </script>
-
-    </for>
-
 
 
 </body>

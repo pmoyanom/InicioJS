@@ -3,26 +3,27 @@ let evento = new Date("2024-12-31");
 let diasRestantes = Math.ceil((evento - new Date()) / (1000 * 60 * 60 * 24));
 
 console.log(`Faltan ${diasRestantes} días para el evento. ¡No te lo pierdas!`);
+//document.write(`Faltan ${diasRestantes} días para el evento. ¡No te lo pierdas!`);
 // Output: Faltan 95 días para el evento. ¡No te lo pierdas!
 
-alert('Este es un mensaje de alerta.');
+window.alert('Este es un mensaje de alerta.');
 
 let decision = confirm('¿Estás seguro de que deseas continuar?');
 if (decision) {
   console.log('El usuario aceptó');
 } else {
   console.log('El usuario canceló');
-}
+}*/
 
 // Cambiar el contenido de un elemento con ID "titulo"
 document.getElementById('titulo').innerText = '¡Hola, Mundo!';
-*/
+
 // Crear un nuevo párrafo y añadirlo al cuerpo
-/*
+
 let parrafo = document.createElement('p');
 parrafo.innerText = 'Este es un nuevo párrafo.';
 document.body.appendChild(parrafo);
-*/
+
 
 // Añadir listas dinámicas
 /*
