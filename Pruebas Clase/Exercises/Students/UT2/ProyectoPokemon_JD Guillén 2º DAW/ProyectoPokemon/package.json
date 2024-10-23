@@ -1,0 +1,11 @@
+{
+  "name": "proyectopokemon",
+  "version": "1.0.0",
+  "description": "juego pokemon por turnos en javascript",
+  "main": "ProyectoPokemon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

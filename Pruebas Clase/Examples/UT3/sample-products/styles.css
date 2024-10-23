@@ -1,0 +1,130 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef2f3;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #34495e;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor principal */
+#productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Estilo de cada producto */
+.producto {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin: 15px;
+    padding: 20px;
+    width: 260px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.producto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.producto h2 {
+    font-size: 1.5em;
+    margin-bottom: 12px;
+    color: #16a085;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.producto p {
+    font-size: 1em;
+    margin-bottom: 15px;
+    color: #7f8c8d;
+}
+
+/* Estilo del precio */
+.producto .precio {
+    font-size: 1.4em;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Botón de compra (opcional) */
+.producto button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.producto button:hover {
+    background-color: #2980b9;
+}
+
+/* Fondo en movimiento */
+.producto::before {
+    content: '';
+    background: linear-gradient(135deg, rgba(22, 160, 133, 0.15), rgba(52, 152, 219, 0.15));
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    transition: top 0.4s;
+    z-index: -1;
+}
+
+.producto:hover::before {
+    top: 0;
+}
+
+/* Estilo responsivo para dispositivos móviles */
+@media (max-width: 768px) {
+    #productos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .producto {
+        width: 90%;
+        margin: 10px 0;
+    }
+}
+
+/* Estilo responsivo para tablets y pantallas medianas */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .producto {
+        width: 45%;
+        margin: 15px;
+    }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Memoria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .tarjeta {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 10px;
+            background-color: lightgray;
+        }
+
+        .escondida {
+            background-color: lightgray;
+        }
+
+        .mostrada {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Juego de Memoria</h1>
+    <div id="tablero"></div>
+    <script>
+        let cartas = ['A', 'B', 'C', 'D', 'A', 'B', 'C', 'D'];
+        cartas = cartas.sort(() => Math.random() - 0.5);
+        let mostradas = [];
+        let tablero = document.getElementById('tablero');
+
+        cartas.forEach((letra, index) => {
+            let tarjeta = document.createElement('div');
+            tarjeta.classList.add('tarjeta', 'escondida');
+            tarjeta.dataset.letra = letra;
+            tarjeta.onclick = function () { mostrarCarta(tarjeta); };
+            tablero.appendChild(tarjeta);
+        });
+
+        function mostrarCarta(tarjeta) {
+            if (mostradas.length < 2 && tarjeta.classList.contains('escondida')) {
+                tarjeta.classList.remove('escondida');
+                tarjeta.classList.add('mostrada');
+                tarjeta.innerText = tarjeta.dataset.letra;
+                mostradas.push(tarjeta);
+
+                if (mostradas.length === 2) {
+                    setTimeout(verificarPareja, 1000);
+                }
+            }
+        }
+
+        function verificarPareja() {
+            if (mostradas[0].dataset.letra === mostradas[1].dataset.letra) {
+                mostradas = [];
+            } else {
+                mostradas.forEach(carta => {
+                    carta.classList.remove('mostrada');
+                    carta.classList.add('escondida');
+                    carta.innerText = '';
+                });
+                mostradas = [];
+            }
+        }
+    </script>
+</body>
+
+</html>

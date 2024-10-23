@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cazador de Clics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #botonClic {
+            position: absolute;
+            padding: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cazador de Clics</h1>
+    <button id="botonClic" onclick="moverBoton()">Haz clic en mí</button>
+    <p>Puntaje: <span id="puntaje">0</span></p>
+    <script>
+        let puntaje = 0;
+
+        function moverBoton() {
+            const boton = document.getElementById("botonClic");
+            const x = Math.random() * (window.innerWidth - boton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - boton.offsetHeight);
+            boton.style.left = `${x}px`;
+            boton.style.top = `${y}px`;
+            document.getElementById("puntaje").innerText = ++puntaje;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Dardos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #tablero {
+            width: 200px;
+            height: 200px;
+            background-color: lightgray;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #dardo {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Juego de Dardos</h1>
+    <div id="tablero" onclick="lanzarDardo(event)"></div>
+    <p id="puntaje"></p>
+    <script>
+        const tablero = document.getElementById('tablero');
+        const dardo = document.createElement('div');
+        dardo.id = 'dardo';
+        tablero.appendChild(dardo);
+
+        function lanzarDardo(event) {
+            const rect = tablero.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            dardo.style.left = `${x}px`;
+            dardo.style.top = `${y}px`;
+
+            const centroX = rect.width / 2;
+            const centroY = rect.height / 2;
+            const distancia = Math.sqrt(Math.pow(x - centroX, 2) + Math.pow(y - centroY, 2));
+
+            let puntaje = 0;
+            if (distancia < 50) puntaje = 100;
+            else if (distancia < 100) puntaje = 50;
+            else puntaje = 10;
+
+            document.getElementById('puntaje').innerText = `Puntaje: ${puntaje}`;
+        }
+    </script>
+</body>
+
+</html>
