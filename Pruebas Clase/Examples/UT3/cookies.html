@@ -5,32 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Cookies</title>
     <script>
-        // Función para crear una cookie
-        function crearCookie(nombre, valor, dias) {
-            let fecha = new Date();
-            fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
-            let expiracion = "expires=" + fecha.toUTCString();
-            document.cookie = nombre + "=" + valor + ";" + expiracion + "; path=/";
-        }
+// Función para crear una cookie
+// Recibe el nombre de la cookie, su valor, y la duración en días.
+function crearCookie(nombre, valor, dias) {
+    // Creamos un nuevo objeto de fecha para calcular la fecha de expiración de la cookie.
+    let fecha = new Date();
+    
+    // Añadimos el número de días especificado a la fecha actual, convirtiendo días a milisegundos.
+    fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+    
+    // Convertimos la fecha de expiración al formato UTC, que es necesario para las cookies.
+    let expiracion = "expires=" + fecha.toUTCString();
+    
+    // Creamos la cookie concatenando el nombre, el valor, la fecha de expiración, 
+    // y el path "/" para que sea accesible en todo el sitio web.
+    document.cookie = nombre + "=" + valor + ";" + expiracion + "; path=/";
+}
 
-        // Función para obtener una cookie
-        function obtenerCookie(nombre) {
-            let cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i].trim();
-                if (cookie.indexOf(nombre + '=') === 0) {
-                    return cookie.substring((nombre + '=').length, cookie.length);
-                }
-            }
-            return null;
+// Función para obtener una cookie por su nombre
+// El parámetro 'nombre' es el nombre de la cookie que se desea recuperar.
+function obtenerCookie(nombre) {
+    // Obtenemos todas las cookies del documento en una sola cadena, separadas por ";"
+    let cookies = document.cookie.split(';');
+    
+    // Iteramos sobre todas las cookies que están almacenadas.
+    for (let i = 0; i < cookies.length; i++) {
+        // Quitamos los espacios al inicio y final de la cookie actual.
+        let cookie = cookies[i].trim();
+        
+        // Comprobamos si la cookie empieza con el nombre que buscamos, seguido de un "=".
+        if (cookie.indexOf(nombre + '=') === 0) {
+            // Si encontramos la cookie, devolvemos su valor (todo lo que viene después del "=").
+            return cookie.substring((nombre + '=').length, cookie.length);
         }
+    }
+    
+    // Si no encontramos la cookie, devolvemos `null`.
+    return null;
+}
 
-        // Crear una cookie y mostrar su valor
-        function gestionarCookies() {
-            crearCookie('usuario', 'Pedro', 7);
-            let usuario = obtenerCookie('usuario');
-            alert('El usuario almacenado es: ' + usuario);
-        }
+// Función para crear una cookie y luego obtener su valor para mostrarlo en una alerta.
+function gestionarCookies() {
+    // Llamamos a la función crearCookie para crear una cookie llamada 'usuario' con el valor 'Pedro' y una duración de 7 días.
+    crearCookie('usuario', 'Pedro', 7);
+    
+    // Llamamos a la función obtenerCookie para recuperar el valor de la cookie 'usuario'.
+    let usuario = obtenerCookie('usuario');
+    
+    // Mostramos el valor de la cookie 'usuario' en una ventana emergente (alerta).
+    alert('El usuario almacenado es: ' + usuario);
+}
     </script>
 </head>
 <body>
