@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="css/shoppingCartStyles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Online Store</h1>
+        </header>
+        <main>
+            <section class="products-grid" id="products">
+                <!-- Products will be dynamically added here -->
+            </section>
+
+            <section class="cart" id="cart-section">
+                <h2>Shopping Cart</h2>
+                <div class="cart-icon">
+                    🛒 <span id="cart-count">0</span>
+                </div>
+                <div id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        Total: <span id="cart-total">0.00</span>€
+                    </div>
+                    <button id="clear-cart" class="clear-cart-btn">Empty Cart</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/logic.js"></script>
+    <script src="js/ProductData.js"></script>
+</body>
+</html>

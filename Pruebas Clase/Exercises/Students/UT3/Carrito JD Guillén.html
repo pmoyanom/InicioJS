@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Carrito de la compra</title>
+</head>
+<style>
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    #carrito {
+        display: flex;
+        justify-content: space-around;
+        border: 2px solid black;
+        width: 60%;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 20px;
+        background-color: rgb(78, 242, 108);
+    }
+
+    #carrito>div {
+        text-align: center;
+    }
+
+    #lista {
+        margin: 30px auto;
+        padding: 20px;
+        width: 60%;
+        text-align: left;
+        background-color: rgb(98, 226, 241);
+        border: 2px solid black;
+        border-radius: 20px;
+    }
+
+    .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+    }
+
+    .item p {
+        margin: 0;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid #333;
+    }
+
+    #vaciar {
+        width: 100%;
+        background-color: #f5a623;
+        color: white;
+    }
+</style>
+
+<body>
+    <form>
+        <h1>Carrito de compra</h1>
+        <div id="carrito">
+            <div>
+                <label for="name">Lapices:</label><br>
+                <button type="button" id="lapices">Agregar</button>
+            </div>
+            <div>
+                <label for="name">Gomas:</label><br>
+                <button type="button" id="borradores">Agregar</button>
+            </div>
+            <div>
+                <label for="name">Tijeras:</label><br>
+                <button type="button" id="tijeras">Agregar</button>
+            </div>
+            <div>
+                <label for="name">Cuadernos:</label><br>
+                <button type="button" id="cuadernos">Agregar</button>
+            </div>
+            <div>
+                <label for="name">Libros:</label><br>
+                <button type="button" id="libros">Agregar</button>
+            </div>
+        </div>
+
+        <div id="lista">
+            <h2>Lista de la compra</h2>
+            <div id="items"></div>
+            <button type="button" id="vaciar">Vaciar carrito</button>
+        </div>
+    </form>
+</body>
+<script>
+    //class for the shopping cart
+    class Carrito {
+        //constructor with items
+        constructor() {
+            this.items = {
+                lapices: 0,
+                borradores: 0,
+                tijeras: 0,
+                cuadernos: 0,
+                libros: 0
+            };
+            this.llenarCarrito();
+        }
+        //function to save the items in the cookie
+        llenarCarrito() {
+            const carritoData = getCookie('carrito');
+            if (carritoData) {
+                this.items = JSON.parse(carritoData);
+            }
+            this.actualizarVista();
+        }
+        //function to update the items in the cookie
+        actualizarVista() {
+            //empty the container
+            const itemsContainer = document.getElementById('items');
+            itemsContainer.innerHTML = '';
+
+            //add new items
+            for (let item in this.items) {
+                if (this.items[item] > 0) {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'item';
+                    itemElement.innerHTML = `
+                        <p>${item.charAt(0).toUpperCase() + item.slice(1)}: ${this.items[item]}</p>
+                        <button type="button" onclick="carrito.eliminarItem('${item}')">Eliminar</button>
+                    `;
+                    itemsContainer.appendChild(itemElement);
+                }
+            }
+        }
+
+        //function to add items
+        agregarItem(item) {
+            this.items[item]++;
+            this.guardarCarrito();
+            this.actualizarVista();
+        }
+
+        //function to remove items
+        eliminarItem(item) {
+
+            this.items[item] = 0;
+            this.guardarCarrito();
+
+            this.actualizarVista();
+        }
+
+        //function to empty the cart
+        vaciarCarrito() {
+            for (let item in this.items) {
+                this.items[item] = 0;
+            }
+            this.guardarCarrito();
+            this.actualizarVista();
+        }
+
+        //function to save the items in the cookie
+        guardarCarrito() {
+            setCookie('carrito', JSON.stringify(this.items), 30);
+        }
+    }
+
+    //function to save the cookie
+    function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/`;
+    }
+
+    //function to get the cookie
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    const carrito = new Carrito();
+
+    //event listeners
+
+    document.getElementById('lapices').addEventListener('click', () => carrito.agregarItem('lapices'));
+    document.getElementById('borradores').addEventListener('click', () => carrito.agregarItem('borradores'));
+    document.getElementById('tijeras').addEventListener('click', () => carrito.agregarItem('tijeras'));
+    document.getElementById('cuadernos').addEventListener('click', () => carrito.agregarItem('cuadernos'));
+    document.getElementById('libros').addEventListener('click', () => carrito.agregarItem('libros'));
+    document.getElementById('vaciar').addEventListener('click', () => carrito.vaciarCarrito());
+</script>
+
+</html>
