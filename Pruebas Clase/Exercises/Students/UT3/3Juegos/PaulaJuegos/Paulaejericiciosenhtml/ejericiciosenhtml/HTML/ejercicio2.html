@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/estilosform2.css">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <div class="container">
+        <h2>ROCK PAPER SCISSORS</h2>
+        <div class="options">
+            <button class="option" onclick="play('rock')">🌑</button>
+            <button class="option" onclick="play('paper')">📃</button>
+            <button class="option" onclick="play('scissors')">✂️</button>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script>
+        function play(playerChoice){//function to play, it depends of the players choice
+            const choices=['rock', 'paper', 'scissors'];//Array 
+            const computerChoice=choices[Math.floor(Math.random()*choices.length)];//Random for the computer choices
+
+            let result;//Initialize result, it will determinate it player wins or not
+            if(playerChoice===computerChoice){//if they ve got the same choice it will be ties.
+                result='Ties ⚖';//result equals ties
+            }else if(
+                (playerChoice==='rock' && computerChoice==='scissors') ||//every choice that makes player wins
+                (playerChoice==='paper' && computerChoice==='rock') ||
+                (playerChoice==='scissors' && computerChoice==='paper') 
+            ){
+                result='You win!! 🏆'//result equals win
+            } else{
+                result='You have lost... 🎃'//If the election is not among the previous ones, it means that player lose
+            }
+
+            const emoji={//if gives meaning to every emoji
+                'rock': '🌑',
+                'paper':'📃',
+                'scissors':'✂️'
+            };
+
+            document.getElementById('result').innerHTML=`
+                ${result}<br>
+                You: ${emoji[playerChoice]} vs Computer: ${emoji[computerChoice]}`;//show the result in the HTML(innerHTML)
+        }
+    </script>
+</body>
+</html>

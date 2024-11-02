@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Von Neumann Machine Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #controls, #output, #memory-display {
+            margin-top: 20px;
+        }
+        #memory-display, #output {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:disabled {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Von Neumann Machine Simulation</h1>
+    <div class="container">
+        <div id="controls">
+            <button onclick="initializeMemory()">Initialize Memory</button>
+            <button onclick="runStep()" id="step-button" disabled>Step</button>
+            <button onclick="runFullSimulation()" id="run-button" disabled>Run Full Simulation</button>
+            <button onclick="resetSimulation()">Reset</button>
+        </div>
+
+        <div id="memory-display">
+            <h3>Memory & Accumulator</h3>
+            <div>Memory: <span id="memory"></span></div>
+            <div>Accumulator: <span id="accumulator">0</span></div>
+            <div>Instruction Pointer: <span id="instruction-pointer">0</span></div>
+        </div>
+
+        <div id="output">
+            <h3>Output</h3>
+            <div id="output-log"></div>
+        </div>
+    </div>
+
+    <script>
+        let memory = [];
+        let accumulator = 0;
+        let instructionPointer = 0;
+        let outputLog = '';
+
+        function initializeMemory() {
+            memory = [1, 5, 3, 2, 4, 9, 0, 6, 7, 8];
+            accumulator = 0;
+            instructionPointer = 0;
+            outputLog = 'Memory initialized.<br>';
+            updateDisplay();
+            document.getElementById('step-button').disabled = false;
+            document.getElementById('run-button').disabled = false;
+        }
+
+        function runStep() {
+            if (instructionPointer < memory.length) {
+                const instruction = memory[instructionPointer];
+                switch (instruction) {
+                    case 0: // HALT
+                        outputLog += 'HALT<br>';
+                        instructionPointer = memory.length; // End loop
+                        disableRunButtons();
+                        break;
+                    case 1: // LOAD
+                        accumulator = memory[instructionPointer + 1];
+                        outputLog += `LOAD ${accumulator}<br>`;
+                        instructionPointer += 2;
+                        break;
+                    case 2: // STORE
+                        memory[memory[instructionPointer + 1]] = accumulator;
+                        outputLog += `STORE ${accumulator} at ${memory[instructionPointer + 1]}<br>`;
+                        instructionPointer += 2;
+                        break;
+                    case 3: // ADD
+                        accumulator += memory[instructionPointer + 1];
+                        outputLog += `ADD ${memory[instructionPointer + 1]}<br>`;
+                        instructionPointer += 2;
+                        break;
+                    case 4: // SUBTRACT
+                        accumulator -= memory[instructionPointer + 1];
+                        outputLog += `SUBTRACT ${memory[instructionPointer + 1]}<br>`;
+                        instructionPointer += 2;
+                        break;
+                    case 5: // JUMP
+                        instructionPointer = memory[instructionPointer + 1];
+                        outputLog += `JUMP to ${instructionPointer}<br>`;
+                        break;
+                    default:
+                        outputLog += `Unknown instruction ${instruction}<br>`;
+                        instructionPointer++;
+                        break;
+                }
+            } else {
+                disableRunButtons();
+            }
+            updateDisplay();
+        }
+
+        function runFullSimulation() {
+            while (instructionPointer < memory.length) {
+                runStep();
+            }
+        }
+
+        function resetSimulation() {
+            memory = [];
+            accumulator = 0;
+            instructionPointer = 0;
+            outputLog = 'Simulation reset.<br>';
+            updateDisplay();
+            disableRunButtons();
+        }
+
+        function disableRunButtons() {
+            document.getElementById('step-button').disabled = true;
+            document.getElementById('run-button').disabled = true;
+        }
+
+        function updateDisplay() {
+            document.getElementById('memory').innerText = JSON.stringify(memory);
+            document.getElementById('accumulator').innerText = accumulator;
+            document.getElementById('instruction-pointer').innerText = instructionPointer;
+            document.getElementById('output-log').innerHTML = outputLog;
+        }
+    </script>
+</body>
+</html>

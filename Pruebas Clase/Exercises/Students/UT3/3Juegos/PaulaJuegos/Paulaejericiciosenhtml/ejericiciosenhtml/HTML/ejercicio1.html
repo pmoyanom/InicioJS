@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/estiloform.css">
+    <title id="titulo">Guess the number</title>
+</head>
+<body>
+    <h2>GUESS THE NUMBER</h2>
+    <br>
+    <br>
+    <form action="">
+        <fieldset>
+            <p> 
+                Enter a number:
+                <input type="number" name="number" id="number" min="1" max="100" maxlength="2" placeholder="Enter a number">
+            </p>
+            <br>
+            <button type="button" onclick="findOut()">Check it</button>
+            <p id="message"></p>
+            <p id="attemps"></p>
+        </fieldset>
+    </form>
+    <script>
+        let correct=Math.floor(Math.random()*100)+1;//Random number, between 1 and 100
+        let attemps=0;// Counter for number of attemps
+        const messageValue=document.getElementById('message');//It will appear the message (low, high....)
+        const attempsValue=document.getElementById('attemps');
+        const inputAttemp=document.getElementById('number');
+
+        function findOut(){//Function to find out if players number equals the correct number
+            const number=parseInt(inputAttemp.value);
+
+            if(isNaN(number)||number<1||number>100){//If the player input an invalid number it will appear the message.
+                messageValue.textContent='Please enter a valid number between 1 and 100 💢';//message
+                messageValue.style.color='#05C7F2';   //font color
+                return; 
+            }
+            attemps++;//attemps increment
+
+            if(number===correct){//if the number equals the correct number it will show :
+                messageValue.textContent='Congratulations!! You guessed the number 🎉🎉';//message
+                messageValue.style.color='#03A62C';//color green
+                attempsValue.textContent=`Number of attemps ${attemps}`;//show the number of attemps
+                document.querySelector('button').disabled=true;//button disabled
+            }else if(number<correct){//if the number is to low
+                messageValue.textContent='To low. Try again...📉';//message
+                messageValue.style.color='#F2BA52';//color
+            }else{//higher
+                messageValue.textContent='To high. Try again...📈';//message
+                messageValue.style.color='#F22E3E';//color
+            }
+
+            inputAttemp='';//attemps
+            inputAttemp.focus();//The focus() method gives focus to an element.
+        }
+        //Add event listener for enter key
+        inputAttemp.addEventListener('keyup', function(event) {
+            //Check if enter key was pressed
+            if (event.key==='Enter') {
+                findOut();//And it will return to the begging of the function
+            }    
+        });
+        
+    </script>
+</body>
+</html>

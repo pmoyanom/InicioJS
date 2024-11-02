@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Adivinar el Número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #1500ff;
+        }
+        h3 {
+            color: #574be1;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 40px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6%;
+            color: #574be1;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .too-high {
+            color: red;
+        }
+        .too-low {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Adivina el Número Secreto</h1>
+    <h3>Ingresa un número entre 1 y 100</h3>
+    <input type="number" id="guessInput" placeholder="Ingresa un número entre 1 y 100">
+    <button id="guessButton">Adivinar</button>
+    <div id="message" class="message"></div>
+    <div id="attempts"></div>
+
+    <script>
+        const secretNumber = Math.floor(Math.random() * 100) + 1; // Generate a random secret number between 1 and 100
+        let attempts = 0; // Initialize the number of attempts
+    
+        // Get references to HTML elements
+        const guessButton = document.getElementById('guessButton'); // Button to submit the user's guess
+        const guessInput = document.getElementById('guessInput'); // Input field where the user enters their guess
+        const messageDiv = document.getElementById('message'); // Element to display feedback messages (too high, too low, or correct)
+        const attemptsDiv = document.getElementById('attempts'); // Element to display the number of attempts
+    
+        // Event listener for the guess button click
+        guessButton.addEventListener('click', () => {
+            const userGuess = parseInt(guessInput.value); 
+            attempts++; 
+    
+            // Check if the user's guess is correct, too high, or too low
+            if (userGuess === secretNumber) {
+                messageDiv.textContent = '¡Correcto! Has adivinado el número secreto. 😎'; 
+                messageDiv.className = 'message correct'; 
+                attemptsDiv.textContent = `Número de intentos: ${attempts}`; 
+                guessInput.disabled = true; 
+            } else if (userGuess > secretNumber) {
+                messageDiv.textContent = 'Demasiado alto 😫 Intenta de nuevo 😁'; 
+                messageDiv.className = 'message too-high'; 
+            } else if (userGuess < secretNumber) {
+                messageDiv.textContent = 'Demasiado bajo 😫, Intenta de nuevo 😁 '; 
+                messageDiv.className = 'message too-low'; 
+            }
+    
+            guessInput.value = ''; // Clear the input field for the next guess
+        });
+    </script>
+    
+
+</body>
+</html>

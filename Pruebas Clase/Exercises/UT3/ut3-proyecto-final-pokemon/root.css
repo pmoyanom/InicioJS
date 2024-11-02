@@ -1,0 +1,15 @@
+:root {
+    --background-color-main: #f4f4f9;
+    --text-color-main: #333;
+    --text-color-heading: #3b4cca;
+    --border-color-selected: #4CAF50;
+    --background-color-selected: #e0ffe0;
+    --hover-background-color: #f9f9f9;
+    --shiny-star-color: gold;
+    --button-color: #5bc0de;
+    --button-hover-color: #31b0d5;
+    --button-disabled-color: #ccc;
+    --box-shadow-color: rgba(51, 51, 51, 0.3); 
+    --vs-text-color: #5bc0de; 
+    --vs-background-color: #fff;
+}

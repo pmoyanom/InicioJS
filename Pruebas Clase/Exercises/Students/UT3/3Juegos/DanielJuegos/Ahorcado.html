@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <style>
+        /* Syles for the div */
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+        div {
+            margin: 50px;
+            background-color: rgb(98, 226, 241);
+            border: 2px solid black;
+            width: 500px;
+            text-align: center;
+            margin: 0 auto;
+            border-radius: 20px;
+        }
+        h1 {
+            font-size: 50px;
+            color: chocolate;
+        }
+        p {
+            font-size: 20px;
+        }
+        #boton {
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: sienna;
+            color: white;
+            border-radius: 20px;
+        }
+        #boton:hover {
+            background-color: chocolate;
+        }
+        #letra{
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+
+            border-radius: 20px;
+        }
+        #muñeco{
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+        #palabra{
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+        #letrasUsadas{
+            color: red;
+            
+        }
+    </style>
+</head>
+<body>
+        <!-- div to display the game -->
+    <div>
+        
+    <h1>Hangman</h1>
+    <!-- div to display the word to guess -->
+    <p id="palabra"></p><br>
+    <!-- div to display the picture of the hangman -->
+    <pre id="muñeco"></pre><br> 
+    <!-- form to input the letter to guess -->
+        <form>
+            <p>Intrduce a letter</p>
+            <input  type="text" id="letra" maxlength="1" size="1"> <br>
+            <br>
+            <input id="boton" type="button" value="Comprobar" onclick="juego.comprobarLetra()">
+        </form>
+    <!--display the used letters, attempts and errors-->
+    <p id="letrasUsadas"></p><br>
+   
+    <p id="vidas"></p>
+    <p id="errores"></p>
+    <p id="resultado"></p>
+</div>
+
+    <script>
+        //class for the game and constructor
+        class Ahorcado {
+            constructor(vidas) {
+                this.palabraSecreta = 'COMPUTER';
+                this.vidasRestantes = vidas;
+                this.errores = 0;
+                this.letrasUsadas = [];
+                this.palabraMostrada = this.mostrarPalabra(); //Sown the hidden word
+                this.actualizarPantalla(); // Update the game interface
+                this.pintarMuñeco(); // Draw the hangman
+            }
+
+            mostrarPalabra() {
+                // Create a hidden word
+                let palabraOculta = '';
+                for (let letra of this.palabraSecreta) {
+                    if (this.letrasUsadas.includes(letra)) {
+                        palabraOculta += letra + ' ';
+                    } else {
+                        palabraOculta += '_ ';
+                    }
+                }
+                return palabraOculta.trim();
+            }
+
+            // Function to check if the letter is in the word
+            comprobarLetra() {
+                let letraInput = document.getElementById('letra').value.toUpperCase();
+                document.getElementById('letra').value = ''; // Clear the input
+                // Validate the input
+                if (letraInput.length !== 1 || !/[A-Z]/.test(letraInput)) {
+                    alert("Introduce a valid letter.");
+                    return;
+                }
+                // Check if the letter has already been used
+                if (this.letrasUsadas.includes(letraInput)) {
+                    alert("This letter has already been used.");
+                    return;
+                }
+
+                this.letrasUsadas.push(letraInput);
+                // Check if the letter is in the word
+                if (this.palabraSecreta.includes(letraInput)) {
+                    this.palabraMostrada = this.mostrarPalabra();  // Update the hidden word
+
+                } else {
+                    this.errores++;
+                    this.vidasRestantes--;
+                }
+
+                this.actualizarPantalla(); // Update the game interface
+                this.pintarMuñeco(); // Draw the hangman
+                this.comprobarFinJuego(); // Check if the game is over
+            }
+            // Function to draw the hangman
+            pintarMuñeco() {
+                const HANGMANPICS = [
+                    `
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+      |
+=========
+`,
+                    `
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+      |
+=========
+`,
+                    `
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+      |
+=========
+`,
+                    `
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+      |
+=========
+`,
+                    `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+      |
+=========
+`,
+                    `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+      |
+=========
+`,
+                    `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+      |
+=========
+`
+                ];
+
+                // Draw the hangman according to the number of errors
+                document.getElementById('muñeco').innerText = HANGMANPICS[this.errores];
+            }
+            // Function to update the game interface
+            actualizarPantalla() {
+                document.getElementById('palabra').innerText = this.mostrarPalabra();
+                document.getElementById('vidas').innerText = `Lifes remaining: ${this.vidasRestantes}`;
+                document.getElementById('errores').innerText = `Mistakes: ${this.errores}`;
+                document.getElementById('letrasUsadas').innerText = `Used letters: ${this.letrasUsadas.join(', ')}`;
+            }
+            // Function to check if the game is over
+            comprobarFinJuego() {
+                if (!this.mostrarPalabra().includes('_')) {
+                    document.getElementById('resultado').innerText = "You won! The word was: " + this.palabraSecreta;
+                } else if (this.vidasRestantes <= 0) {
+                    document.getElementById('resultado').innerText = "You lost! The word was: " + this.palabraSecreta;
+                }
+            }
+        }
+        // Create an instance of the game with the number of attempts
+        let juego = new Ahorcado(6); 
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,120 @@
+/* Estilo base */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: var(--background-color-main);
+    color: var(--text-color-main);
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal para el combate */
+.vs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    margin: 20px;
+    position: relative;
+    border-radius: 20px;
+    background-color: var(--vs-background-color);
+    box-shadow: 0 4px 10px var(--box-shadow-color);
+}
+
+/* Contenedor de cada Pokémon */
+.pokemon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 50px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--background-color-main);
+    box-shadow: 0 8px 15px var(--box-shadow-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pokemon-container:hover {
+    transform: scale(1.05);
+    background-color: var(--hover-background-color);
+}
+
+/* Estilo de la imagen del Pokémon */
+.pokemon-img {
+    width: 220px;
+    height: 220px;
+    object-fit: scale-down;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 5px solid var(--vs-text-color);
+    box-shadow: 0 4px 8px var(--box-shadow-color);
+    transition: box-shadow 0.3s ease;
+}
+
+.pokemon-img:hover {
+    box-shadow: 0 6px 12px var(--box-shadow-color);
+}
+
+/* Texto "VS" */
+.vs-text {
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--vs-text-color);
+    text-shadow: 3px 3px 5px var(--box-shadow-color);
+    transform: rotate(-15deg);
+    margin: 0 30px;
+    animation: pulse 1.5s infinite;
+}
+
+/* Efecto de animación para el texto "VS" */
+@keyframes pulse {
+    0% {
+        transform: scale(1) rotate(-15deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(-15deg);
+    }
+    100% {
+        transform: scale(1) rotate(-15deg);
+    }
+}
+
+/* Título del nombre de los Pokémon */
+h3 {
+    font-size: 1.8rem;
+    margin-top: 15px;
+    color: var(--vs-text-color);    
+}
+
+/* Botón de "Empezar Combate" */
+.start-button {
+    display: inline-block;
+    margin: 30px auto;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px var(--box-shadow-color);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.start-button:hover {
+    background-color: var(--button-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px var(--box-shadow-color);
+}
+
+.start-button:active {
+    background-color: var(--button-color);
+    transform: translateY(0);
+}
+
+.start-button:disabled {
+    background-color: var(--button-disabled-color);
+    cursor: not-allowed;
+}

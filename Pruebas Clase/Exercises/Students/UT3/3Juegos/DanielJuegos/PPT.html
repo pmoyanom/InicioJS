@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style>
+                /* Styles */
+        body {
+            text-align: center;
+            
+        }
+        div {
+            margin: 50px;
+            background-color: rgb(98, 226, 241);
+            border: 2px solid black;
+            width: 500px;
+            text-align: center;
+            margin: 0 auto;
+            border-radius: 20px;
+        }
+        h1 {
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        form {
+            letter-spacing: 50px;
+        }
+        button {
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: sienna;
+            border-radius: 20px;
+            
+        }
+        #resultado {
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+        <!-- div to display the game -->
+    <div>
+    <h1>Rock, Paper, Scissors</h1>
+    <form>
+        <button type="button" onclick="Juego('Piedra')">💎 </button>
+        <button type="button" onclick="Juego('Papel')">📄 </button>
+        <button type="button" onclick="Juego('Tijera')">✂ </button>
+    </form>
+    <p id="resultado"></p>
+    </div>
+    <script>
+        //function to play
+        function Juego(opcion) {
+            //generate random number and give the value of each option
+            let resultado = document.getElementById('resultado');
+            let computer = Math.floor(Math.random() * 3) + 1;
+            let eComputer;
+            
+            if (computer == 1) {
+                computer = 'Piedra';
+                 eComputer = '💎';
+            } else if (computer == 2) {
+                computer = 'Papel';
+                 eComputer = '📄';
+            } else {
+                computer = 'Tijera';
+                 eComputer = '✂';
+            }
+            //win, lose or tie conditions
+            if (
+                (computer == 'Piedra' && opcion == 'Papel') ||
+                (computer == 'Papel' && opcion == 'Tijera') ||
+                (computer == 'Tijera' && opcion == 'Piedra')
+            ) {
+                resultado.innerText = eComputer + ' You won!';
+            } else if (
+                (computer == 'Piedra' && opcion == 'Tijera') ||
+                (computer == 'Papel' && opcion == 'Piedra') ||
+                (computer == 'Tijera' && opcion == 'Papel')
+            ) {
+                resultado.innerText =  eComputer + ' You lost!';
+            } else {
+                resultado.innerText = eComputer + ' Draw!';
+            }
+        }
+    </script>
+</body>
+
+</html>

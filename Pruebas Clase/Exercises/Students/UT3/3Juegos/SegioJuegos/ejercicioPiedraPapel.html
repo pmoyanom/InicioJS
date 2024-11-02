@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijeras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: rgb(153, 247, 230);
+        }
+        .boton {
+            background-color: #a45fe4;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .boton:hover {
+            background-color: #f852ad;
+        }
+        .resultado {
+            font-size: 24px;
+        }
+        #piedra, #papel, #tijeras {
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Elige entre Piedra, Papel o Tijeras</h1>
+    <button class="boton" id="piedra">🪨</button>
+    <button class="boton" id="papel">📄</button>
+    <button class="boton" id="tijeras">✂️</button>
+    <p class="resultado" id="resultado"></p>
+    <script>
+        const piedra = document.getElementById('piedra'); // Get the button element for "rock"
+        const papel = document.getElementById('papel'); // Get the button element for "paper"
+        const tijeras = document.getElementById('tijeras'); // Get the button element for "scissors"
+        const resultado = document.getElementById('resultado'); // Get the element to display the result of the game
+    
+        // Function to get the computer's choice randomly
+        function getComputadora() {
+            const opciones = ['piedra', 'papel', 'tijeras']; // Possible choices: rock, paper, scissors
+            const random = Math.floor(Math.random() * opciones.length); 
+            return opciones[random]; 
+        }
+    
+        // Function to play the game, comparing player's choice with computer's choice
+        function jugar(jugador) {
+            const computadora = getComputadora(); 
+            let mensaje = ''; 
+    
+            // Compare player's choice with computer's choice to determine the result
+            if (jugador === computadora) {
+                mensaje = 'Empate'; // If both choose the same, it's a tie
+            } else if ((jugador === 'piedra' && computadora === 'tijeras') || 
+                       (jugador === 'papel' && computadora === 'piedra') || 
+                       (jugador === 'tijeras' && computadora === 'papel')) {
+                mensaje = 'Victoria'; // Player wins if they follow the winning conditions
+            } else {
+                mensaje = 'Derrota'; // Otherwise, the player loses
+            }
+    
+            // Display the result message with corresponding icons for both player and computer's choices
+            resultado.innerText = `${mensaje}! Jugador: ${jugador === 'piedra' ? '🪨' : jugador === 'papel' ? '📄' : '✂️'} vs Computadora: ${computadora === 'piedra' ? '🪨' : computadora === 'papel' ? '📄' : '✂️'}`;
+        }
+    
+        // Add event listeners to the buttons to trigger the game with player's choice
+        piedra.addEventListener('click', () => jugar('piedra')); 
+        papel.addEventListener('click', () => jugar('papel')); 
+        tijeras.addEventListener('click', () => jugar('tijeras')); 
+    </script>
+    
+</body>
+</html>

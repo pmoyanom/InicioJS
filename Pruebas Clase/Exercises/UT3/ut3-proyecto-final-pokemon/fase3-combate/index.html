@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalla Pokémon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="battle-container">
+        <!-- Cuadro de batalla con los Pokémon -->
+        <div class="pokemon-battle">
+            <div class="pokemon-container">
+                <img id="pokemon1-img" class="pokemon-img"
+                    src="https://projectpokemon.org/images/normal-sprite/pikachu.gif" alt="Pokemon 1">
+                <h3 id="pokemon1-name">Pikachu</h3>
+                <div class="health-bar">
+                    <div id="pokemon1-health" class="health-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="pokemon-container">
+                <img id="pokemon2-img" class="pokemon-img"
+                    src="https://projectpokemon.org/images/normal-sprite/charmander.gif" alt="Pokemon 2">
+                <h3 id="pokemon2-name">Charmander</h3>
+                <div class="health-bar">
+                    <div id="pokemon2-health" class="health-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="attack-button">Atacar</button>
+                <button id="heal-button">Curar</button>
+            </div>
+        </div>
+
+        <!-- Pantalla de log a la derecha -->
+        <div class="log-screen">
+            <h3>Registro de Batalla</h3>
+            <div id="log-messages" class="log-messages"></div>
+        </div>
+    </div>
+    <script src="../pokemon.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

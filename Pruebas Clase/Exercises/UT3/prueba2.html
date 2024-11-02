@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Von Neumann Machine Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .controls, .memory-display {
+            margin: 10px 0;
+        }
+        #output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            height: 150px;
+            overflow-y: auto;
+        }
+        .memory-cell {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #ccc;
+            margin: 2px;
+            background-color: #f4f4f4;
+        }
+        .pointer {
+            background-color: #cce5ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Von Neumann Machine Simulation</h1>
+    <div class="controls">
+        <button onclick="runNextInstruction()">Next Instruction</button>
+        <button onclick="runSimulation()">Run All</button>
+        <button onclick="resetMachine()">Reset</button>
+    </div>
+    <div>Accumulator: <span id="accumulator">0</span></div>
+    <div>Instruction Pointer: <span id="instructionPointer">0</span></div>
+
+    <div class="memory-display">
+        <h2>Memory</h2>
+        <div id="memory">
+            <!-- Memory cells will be generated here -->
+        </div>
+    </div>
+    
+    <div id="output"></div>
+
+    <script>
+        let memory = [1, 5, 3, 1, 4, 9, 2, 8, 5, 0];
+        let accumulator = 0;
+        let instructionPointer = 0;
+        let output = '';
+
+        function updateDisplay() {
+            document.getElementById('accumulator').textContent = accumulator;
+            document.getElementById('instructionPointer').textContent = instructionPointer;
+            
+            const memoryContainer = document.getElementById('memory');
+            memoryContainer.innerHTML = ''; // Clear previous display
+            memory.forEach((value, index) => {
+                const cell = document.createElement('div');
+                cell.textContent = value;
+                cell.className = 'memory-cell';
+                if (index === instructionPointer) cell.classList.add('pointer');
+                memoryContainer.appendChild(cell);
+            });
+            document.getElementById('output').innerHTML = output;
+        }
+
+        function runNextInstruction() {
+            if (instructionPointer >= memory.length) return;
+            const instruction = memory[instructionPointer];
+
+            switch (instruction) {
+                case 0: // HALT
+                    output += 'HALT<br>';
+                    instructionPointer = memory.length;
+                    break;
+                case 1: // LOAD
+                    accumulator = memory[instructionPointer + 1];
+                    output += `LOAD ${accumulator}<br>`;
+                    instructionPointer += 2;
+                    break;
+                case 2: // STORE
+                    memory[memory[instructionPointer + 1]] = accumulator;
+                    output += `STORE ${accumulator} at ${memory[instructionPointer + 1]}<br>`;
+                    instructionPointer += 2;
+                    break;
+                case 3: // ADD
+                    accumulator += memory[instructionPointer + 1];
+                    output += `ADD ${memory[instructionPointer + 1]}<br>`;
+                    instructionPointer += 2;
+                    break;
+                case 4: // SUBTRACT
+                    accumulator -= memory[instructionPointer + 1];
+                    output += `SUBTRACT ${memory[instructionPointer + 1]}<br>`;
+                    instructionPointer += 2;
+                    break;
+                case 5: // JUMP
+                    instructionPointer = memory[instructionPointer + 1];
+                    output += `JUMP to ${instructionPointer}<br>`;
+                    break;
+                default:
+                    output += `Unknown instruction ${instruction}<br>`;
+                    instructionPointer++;
+                    break;
+            }
+
+            updateDisplay();
+        }
+
+        function runSimulation() {
+            while (instructionPointer < memory.length) {
+                runNextInstruction();
+            }
+        }
+
+        function resetMachine() {
+            memory = [1, 5, 3, 1, 4, 9, 2, 8, 5, 0];
+            accumulator = 0;
+            instructionPointer = 0;
+            output = '';
+            updateDisplay();
+        }
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>

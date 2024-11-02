@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #a6c1ee 0%, #fbc2eb 100%);
+            color: #333;
+            margin: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .word {
+            font-size: 48px;
+            letter-spacing: 10px;
+            margin: 20px 0;
+            color: #3a3a3a;
+        }
+        input[type="text"] {
+            width: 50px;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid #333;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #6c63ff;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border: 2px solid #6c63ff;
+            background-color: #6c63ff;
+            color: white;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #5b51ec;
+        }
+        .emoticon {
+            font-size: 24px;
+            border-radius: 5px;
+            border: 2px solid #333;
+            background-color: #fff;
+            transition: all 0.3s;
+        }
+        .emoticon:hover {
+            background-color: #8aa9ea;
+        }
+        .error {
+            border-color: red; /* Bordes rojos en caso de error */
+            background-color: rgba(255, 0, 0, 0.1); /* Fondo ligero rojo */
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .lost {
+            color: red;
+        }
+        .won {
+            color: green;
+        }
+        .hangman {
+            margin-top: 20px;
+            font-size: 30px;
+        }
+        #emoticonContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Juego del Ahorcado</h1>
+    <div class="word" id="wordDisplay"></div>
+    <input type="text" id="letterInput" maxlength="1" placeholder="Letra">
+    <button id="guessButton">Adivinar</button>
+    
+    <div id="emoticonContainer">
+        <button class="emoticon" id="emoticon1">👤</button>
+        <button class="emoticon" id="emoticon2">👕</button>
+        <button class="emoticon" id="emoticon3">💪</button>
+        <button class="emoticon" id="emoticon4">🦾</button>
+        <button class="emoticon" id="emoticon5">🦵</button>
+        <button class="emoticon" id="emoticon6">🦿</button>
+    </div>
+    
+    <div class="message" id="gameMessage"></div>
+    <div id="hangmanDisplay" class="hangman"></div>
+    <div id="attemptsDisplay"></div>
+
+    <script>
+        const wordsList = ["javascript", "programacion", "ahorcado", "desarrollador", "computadora"]; 
+        const selectedWord = wordsList[Math.floor(Math.random() * wordsList.length)]; // Randomly select a word from the list
+        let guessedLetters = []; 
+        let attemptsRemaining = 6;
+    
+        // Get references to HTML elements
+        const wordDisplay = document.getElementById('wordDisplay');
+        const letterInput = document.getElementById('letterInput');
+        const guessButton = document.getElementById('guessButton');
+        const gameMessage = document.getElementById('gameMessage');
+        const hangmanDisplay = document.getElementById('hangmanDisplay');
+        const attemptsDisplay = document.getElementById('attemptsDisplay');
+    
+        // Initialize the game
+        function startGame() {
+            guessedLetters = []; // Reset guessed letters
+            attemptsRemaining = 6; // Reset attempts
+            refreshWordDisplay(); // Update the word display
+            gameMessage.textContent = ''; // Clear any game message
+            hangmanDisplay.textContent = ''; // Clear hangman display
+            attemptsDisplay.textContent = `Intentos restantes: ${attemptsRemaining}`; // Show remaining attempts
+            resetEmoticons(); // Reset the emoticons' styles
+        }
+    
+        // Update the display of the word with underscores and correctly guessed letters
+        function refreshWordDisplay() {
+            const displayedWord = selectedWord.split('').map(letter => guessedLetters.includes(letter) ? letter : '_').join(' ');
+            wordDisplay.textContent = displayedWord;
+        }
+    
+        // Reset emoticons to their initial state (no error class)
+        function resetEmoticons() {
+            const emoticons = document.querySelectorAll('.emoticon');
+            emoticons.forEach(emoticon => {
+                emoticon.classList.remove('error'); // Remove error class
+            });
+        }
+    
+        // Event listener for the guess button click
+        guessButton.addEventListener('click', () => {
+            const letter = letterInput.value.toLowerCase(); // Get the inputted letter and convert to lowercase
+            letterInput.value = ''; // Clear the input field
+    
+            if (letter && !guessedLetters.includes(letter)) { 
+                guessedLetters.push(letter); // Add the letter to guessed letters
+    
+                if (!selectedWord.includes(letter)) { // If the letter is incorrect
+                    attemptsRemaining--; // Decrease remaining attempts
+                    const emoticons = document.querySelectorAll('.emoticon');
+                    emoticons[6 - attemptsRemaining].classList.add('error'); 
+                }
+    
+                refreshWordDisplay(); // Update the word display
+                attemptsDisplay.textContent = `Intentos restantes: ${attemptsRemaining}`; // Update remaining attempts display
+    
+                if (attemptsRemaining === 0) { // If no attempts left, player loses
+                    gameMessage.textContent = `¡Perdiste! La palabra era: ${selectedWord}`; 
+                    gameMessage.className = 'message lost'; 
+                    hangmanDisplay.textContent = '🤐'; 
+                } else if (selectedWord.split('').every(letter => guessedLetters.includes(letter))) { 
+                    gameMessage.textContent = '¡Ganaste! Has adivinado la palabra.'; 
+                    gameMessage.className = 'message won'; // 
+                }
+    
+                hangmanDisplay.textContent = '🤐'.repeat(6 - attemptsRemaining); // Update hangman display with emoticons
+            }
+        });
+    
+        // Start the game when the window loads
+        window.onload = startGame;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/estilosform3.css">
+    <title>HANGMAN GAME</title>
+</head>
+<body>
+    <div class="container">
+        <h1>HANGMAN GAME</h1>
+        <div id="hangman"></div>
+        <div id="word"></div>
+        <div id="attemps">Remaining attemps: 6</div>
+        <div id="message"></div>
+        <div class="letters" id="letters"></div>
+        <button id="reboot" onclick="startGame()">Play again</button>
+    </div>
+
+    <script>
+        //Array for the words to guess
+        const words = ['JAVASCRIPT', 'PROGRAMMING', 'DEVELOPMENT', 'COMPUTER', 'TECHNOLOGY', 'INTERNET', 'APPLICATION', 'SOFTWARE', 'CLIENT', 'WEBSITE', 'NETWORK', 'DATABASE', 'DEVELOPER', 'FRAMEWORK', 'HARDWARE', 'KEYBOARD', 'PROCESSOR', 'ALGORITHM', 'SECURITY', 'INTERFACE'];
+        const hangmanPaint = [//Array to show the paint
+            `
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========`,
+            `
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========`
+        ];
+
+        let actualWord;//
+        let hiddenWord;
+        let remainingAttemps;
+        let usedLetters;
+        let gameOver;
+
+        function startGame() {// Select random word
+            actualWord=words[Math.floor(Math.random()*words.length)];//Random to determinate the word to guess
+            hiddenWord='_'.repeat(actualWord.length);//The hidden word will be replaced by _, for each letter it has
+            remainingAttemps=6;//6 attemps
+            usedLetters=new Set();//if the letter has been use, it set in to the array
+            //Pass an array to the new Set() constructor
+            gameOver=false;//game over false
+
+            // Update interface
+            document.getElementById('word').textContent=hiddenWord;//word will appears as hidden
+            document.getElementById('attemps').textContent=`Remaining attemps: ${remainingAttemps}`;//Show attemps
+            document.getElementById('message').textContent='';//message
+            document.getElementById('hangman').textContent=hangmanPaint[0];//hangman paint
+            document.getElementById('reboot').style.display='none';//reboot
+
+            // Create letter buttons
+            const lettersContainer=document.getElementById('letters');
+            lettersContainer.innerHTML='';//letters container will show html
+            for (let i=65;i<=90;i++) {
+                const letter=String.fromCharCode(i);
+                const button=document.createElement('button');
+                button.textContent=letter;
+                button.className='letter';
+                button.onclick=()=>tryLetter(letter);
+                lettersContainer.appendChild(button);
+            }
+        }
+
+        function updateHiddenWord(letter) {
+            let newHiddenWord='';
+            for (let i=0;i<actualWord.length;i++) {
+                if (actualWord[i]===letter) {
+                    newHiddenWord+=letter;
+                } else {
+                    newHiddenWord+=hiddenWord[i];
+                }
+            }
+            hiddenWord=newHiddenWord;
+            document.getElementById('word').textContent=hiddenWord;
+        }
+
+        function tryLetter(letter) {
+            if(gameOver) return;
+
+            // Disable the used letter button
+            const buttons=document.querySelectorAll('.letter');
+            buttons.forEach(button=>{
+                if (button.textContent===letter) {
+                    button.disabled=true;
+                }
+            });
+
+            if (usedLetters.has(letter)) return;
+            usedLetters.add(letter);
+
+            if (actualWord.includes(letter)) {
+                updateHiddenWord(letter);
+                
+                if (!hiddenWord.includes('_')) {
+                    document.getElementById('message').textContent='Congratulations! You have won! 🏆';
+                    gameOver=true;
+                    document.getElementById('reboot').style.display='inline-block';
+                }
+            } else {
+                remainingAttemps--;
+                document.getElementById('attemps').textContent=`Remaining attemps: ${remainingAttemps}`;
+                document.getElementById('hangman').textContent=hangmanPaint[6-remainingAttemps];
+
+                if (remainingAttemps===0) {
+                    document.getElementById('message').textContent =`Game Over 💢 The hidden word was: ${actualWord}`;
+                    gameOver=true;
+                    document.getElementById('reboot').style.display='inline-block';
+                }
+            }
+        }
+
+        // Game starts here
+        window.onload = startGame;
+    </script>
+</body>
+</html>
