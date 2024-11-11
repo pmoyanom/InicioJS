@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select your Pokémon</title>
+    <link rel="stylesheet" href="../src/css/pokemonstyles.css">
+</head>
+<body>
+    <audio id="audio" src="../audio/1-01. Opening.mp3" type="audio/mp3" preload="auto" autoplay></audio>
+    <div class="container">
+        <h1>Choose your Pokémon</h1>
+        <div class="buttons-container">
+            <button id="random-button" class="action-button">Random Pokémon</button>
+            <button id="next-button" class="action-button" disabled>Next ▶</button>
+        </div>
+        <div id="pokemon-list" class="pokemon-list"></div>
+    </div>
+    <script src="../src/js/index.js"></script>
+</body>
+</html>

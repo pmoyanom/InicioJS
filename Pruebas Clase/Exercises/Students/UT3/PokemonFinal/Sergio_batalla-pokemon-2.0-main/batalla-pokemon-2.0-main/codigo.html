@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Pokémon</title>
+    <!-- Vincula el archivo CSS -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <!-- Contenedor para la selección de Pokémon -->
+    <div id="seleccion-pokemon">
+        <img class="logo" src="https://res.cloudinary.com/dzrp12vse/image/upload/v1730913055/Pokemon-Logo-removebg-preview_qk04za.png" alt="">
+        <h1>Selecciona tu Pokémon</h1>
+        
+        <!-- Contenedor para la cuadrícula de Pokémon -->
+        <div id="lista-pokemons" class="pokemon-grid"></div>
+        
+        <!-- Botón para confirmar la selección -->
+        <button id="btn-seleccionar" disabled>Confirmar selección</button>
+        <button id="btn-seleccionar1">Seleccionar Pokémon Aleatorio</button>
+
+    </div>
+
+    <div id="pantalla-combate" class="pantalla" style="display: none;">
+        <h2>Combate Pokémon</h2>
+        <div id="jugador">
+            <img id="img-jugador" src="" alt="Jugador Pokémon">
+           
+            <p id="estado-jugador"></p>
+            <div class="barra-vida">
+                <div id="vida-jugador" class="vida" style="width: 60%;"></div>
+            </div>
+        </div>
+        <div id="oponente">
+            <img id="img-oponente" src="" alt="Oponente Pokémon">
+           
+            <p id="estado-oponente"></p>
+            <div class="barra-vida">
+                <div id="vida-oponente" class="vida" style="width: 60%;"></div>
+            </div>
+        </div>
+        <button id="btn-ataque">Atacar</button>
+        <button id="btn-curar">Curar</button>
+        <br>
+        <br> 
+        <br>
+        <!-- Contenedor para los mensajes de combate -->
+<div id="mensajes-combate" style="border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll;">
+    <!-- Los mensajes se mostrarán aquí -->
+</div>
+<button id="limpiar-mensajes" style="margin-top: 10px;">Limpiar Mensajes</button>
+
+
+
+    </div>
+
+    <script src="index.js" type="module"></script>
+</body>
+</html>

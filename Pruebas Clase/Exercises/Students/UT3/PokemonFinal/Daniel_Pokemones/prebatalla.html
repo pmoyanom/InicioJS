@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Batalla</title>
+    <link rel="stylesheet" href="css/estiloPre.css">  
+
+</head>
+<body>
+    <h1>¡La batalla comienza!</h1>
+
+    <!-- Pokemon container -->
+    <div class="pokemon-container">
+        <div id="playerPokemonContainer" class="pokemon-card">
+            <h2>Tu Pokémon:</h2>
+            <img id="playerImg" src="" alt="Imagen del Pokémon" width="100">
+            <p id="playerName"></p>
+            <p id="playerType"></p>
+            <p id="playerHP"></p>
+        </div>
+
+        <div id="enemyPokemonContainer" class="pokemon-card">
+            <h2>Pokémon del Oponente:</h2>
+            <img id="enemyImg" src="" alt="Imagen del Pokémon" width="100">
+            <p id="enemyName"></p>
+            <p id="enemyType"></p>
+            <p id="enemyHP"></p>
+        </div>
+    </div>
+
+    <!-- Battle button -->
+    <button id="startBattleButton">Comenzar Batalla</button>
+
+    <script type="module" src="javascript/Pokemones.js"></script>
+    <script type="module" src="javascript/Galletas.js"></script>
+    <script type="module" src="javascript/preBatalla.js"></script>
+    
+</body>
+</html>

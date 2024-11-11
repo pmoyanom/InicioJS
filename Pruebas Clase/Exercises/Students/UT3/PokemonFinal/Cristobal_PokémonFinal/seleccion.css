@@ -1,0 +1,79 @@
+@import url('https://fonts.cdnfonts.com/css/lexend');
+
+body {
+    background-image: url('https://wallpapers.com/images/hd/pokemon-black-02wyb460e0jo87w3.jpg');
+    background-size: cover;
+    background-position: center;
+    color: rgb(0, 0, 0);
+    font-family: 'Lexend', sans-serif;
+    font-size: medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+    color: #ffcc00;
+}
+
+/* Contenedor de la lista de Pokémon */
+#pokemon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 80%;
+    overflow-y: auto;
+    height: 60vh;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+}
+
+/* Estilo para cada Pokémon */
+.pokemon-item {
+    background-color: rgba(124, 128, 255, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pokemon-item:hover {
+    transform: scale(1.08);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Imagen del Pokémon */
+.pokemon-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Botón de selección */
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1e7e22;
+}

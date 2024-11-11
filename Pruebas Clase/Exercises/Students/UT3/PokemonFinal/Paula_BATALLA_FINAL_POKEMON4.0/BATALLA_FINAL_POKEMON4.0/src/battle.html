@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat</title>
+    <link rel="stylesheet" href="../src/css/combatStyles.css">
+</head>
+<body>
+      <div class="battle-container">
+        <div class="battle-scene">
+            <div class="pokemon opponent">
+              <img id="opponent-sprite" class="pokemon-sprite">
+                <div class="pokemon-info">
+                    <div class="name-level">
+                        <span id="opponent-name"></span>
+                        <span id="opponent-shiny"></span>
+                    </div>
+                    <div class="health-bar">
+                        <div class="health-bg">
+                            <div id="opponent-health" class="health-fill"></div>
+                        </div>
+                        <span id="opponent-hp-text"></span>
+                    </div>
+                    <div class="types" id="opponent-types"></div>
+                </div>
+              
+            </div>
+
+            <div class="pokemon player">
+                <div class="pokemon-info">
+                    <div class="name-level">
+                        <span id="player-name"></span>
+                        <span id="player-shiny"></span>
+                    </div>
+                    <div class="health-bar">
+                        <div class="health-bg">
+                            <div id="player-health" class="health-fill"></div>
+                        </div>
+                        <span id="player-hp-text"></span>
+                    </div>
+                    <div class="types" id="player-types"></div>
+                </div>
+                <img id="player-sprite" class="pokemon-sprite">
+            </div>
+        </div>
+
+        <div id="battle-log" class="battle-log"></div>
+
+        <div class="battle-controls">
+            <div class="moves-grid">
+                <button class="move-btn" id="attack" onclick="executeMove('attack')">ATTACK</button>
+                <button class="move-btn" id="defense" onclick="executeMove('defense')">DEFENSE</button>
+                <button class="move-btn" id="special" onclick="executeMove('special')">SPECIAL ATTACK</button>
+                <button class="move-btn" id="heal" onclick="executeMove('heal')">HEAL</button>
+            </div>
+        </div>
+        <div id="end-message" class="end-message hidden"></div>
+
+    </div>
+    <div class="audio">
+      <audio autoplay>
+          <source src="../audio/1-28. Battle (Vs. Gym Leader).mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+        </audio>
+    </div>
+    <script src="../src/js/combat.js"></script>
+</body>
+</html>

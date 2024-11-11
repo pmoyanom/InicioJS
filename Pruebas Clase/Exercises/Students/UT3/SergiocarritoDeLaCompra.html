@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito de Compras Estético</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      color: #333;
+    }
+    h2 {
+      color: #444;
+      margin-bottom: 10px;
+    }
+    #contenedor {
+      display: flex;
+      gap: 30px;
+    }
+    #productos, #carrito {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+    .producto, .carrito-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .producto img, .carrito-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    button {
+      padding: 5px 12px;
+      font-size: 14px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .producto button {
+      background-color: #28a745;
+    }
+    .producto button:hover {
+      background-color: #218838;
+    }
+    .carrito-item button {
+      background-color: #dc3545;
+    }
+    .carrito-item button:hover {
+      background-color: #c82333;
+    }
+    #vaciar-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      border-radius: 5px;
+    }
+    #vaciar-btn:hover {
+      background-color: #0069d9;
+    }
+  </style>
+</head>
+<body>
+  <div id="contenedor">
+    <div id="productos">
+      <h2>Productos Disponibles</h2>
+
+      <div class="producto">
+        <img src="https://res.cloudinary.com/dq8kckqtc/image/upload/v1730832462/DALL_E_2024-11-05_19.47.25_-_A_realistic_image_of_a_Kawasaki_Ninja_motorcycle_on_an_open_road._The_motorcycle_has_a_sleek_sporty_design_with_sharp_angular_lines_and_an_aggressiv_zxblyf.webp" alt="Producto 1">
+        <span>Producto 1</span>
+        <button onclick="agregarAlCarrito('Producto 1')">Agregar</button>
+      </div>
+
+      <div class="producto">
+        <img src="https://res.cloudinary.com/dq8kckqtc/image/upload/v1730832444/DALL_E_2024-11-05_19.46.44_-_A_realistic_image_of_a_Honda_CBR_600_motorcycle_on_an_open_road._The_motorcycle_is_sleek_with_a_sporty_and_aerodynamic_design_featuring_sharp_lines_a_d18mtu.webp" alt="Producto 2">
+        <span>Producto 2</span>
+        <button onclick="agregarAlCarrito('Producto 2')">Agregar</button>
+      </div>
+
+      <div class="producto">
+        <img src="https://res.cloudinary.com/dq8kckqtc/image/upload/v1730832444/DALL_E_2024-11-05_19.46.41_-_A_realistic_image_of_a_Yamaha_YZF-R6_motorcycle_on_a_scenic_open_road._The_motorcycle_is_sleek_with_a_sporty_design_displaying_sharp_curves_and_aerod_mn4zza.webp" alt="Producto 3">
+        <span>Producto 3</span>
+        <button onclick="agregarAlCarrito('Producto 3')">Agregar</button>
+      </div>
+    </div>
+
+    <div id="carrito">
+      <h2>Carrito de Compras</h2>
+      <ul id="lista-carrito"></ul>
+      <button id="vaciar-btn" onclick="vaciarCarrito()">Vaciar carrito</button>
+    </div>
+  </div>
+
+  <script>
+    const carrito = {};
+
+    function agregarAlCarrito(producto) {
+      carrito[producto] = (carrito[producto] || 0) + 1;
+      actualizarCarrito();
+      guardarCarritoEnCookies();
+    }
+
+    function eliminarDelCarrito(producto) {
+      delete carrito[producto];
+      actualizarCarrito();
+      guardarCarritoEnCookies();
+    }
+
+    function vaciarCarrito() {
+      for (let producto in carrito) delete carrito[producto];
+      actualizarCarrito();
+      guardarCarritoEnCookies();
+    }
+
+    function actualizarCarrito() {
+      const listaCarrito = document.getElementById("lista-carrito");
+      listaCarrito.innerHTML = "";
+      for (let producto in carrito) {
+        const item = document.createElement("li");
+        item.classList.add("carrito-item");
+
+        const nombreProducto = document.createElement("span");
+        nombreProducto.innerText = `${producto} - Cantidad: ${carrito[producto]}`;
+
+        const botonEliminar = document.createElement("button");
+        botonEliminar.innerText = "Eliminar";
+        botonEliminar.onclick = () => eliminarDelCarrito(producto);
+
+        item.appendChild(nombreProducto);
+        item.appendChild(botonEliminar);
+        listaCarrito.appendChild(item);
+      }
+    }
+
+    function guardarCarritoEnCookies() {
+      const dias = 7;
+      let fecha = new Date();
+      fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+      const expiracion = "expires=" + fecha.toUTCString();
+      document.cookie = `carrito=${JSON.stringify(carrito)}; ${expiracion}; path=/;`;
+    }
+
+    function cargarCarritoDeCookies() {
+      const cookies = document.cookie.split("; ");
+      for (let cookie of cookies) {
+        if (cookie.startsWith("carrito=")) {
+          Object.assign(carrito, JSON.parse(cookie.split("=")[1]));
+          actualizarCarrito();
+          break;
+        }
+      }
+    }
+
+    window.onload = cargarCarritoDeCookies;
+  </script>
+</body>
+</html>

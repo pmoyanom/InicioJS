@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    background-image: url('/assets/Estadio.avif');
+}
+
+h1 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.battle-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.pokemon-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.pokemon-card img {
+    width: 100px;
+    height: 100px;
+}
+
+.pokemon-card h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.pokemon-card p {
+    margin: 5px 0;
+}
+
+.health-bar-container {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 15px;
+    margin-top: 10px;
+    width: 100%;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.health-bar {
+    height: 100%;
+    width: 100%; 
+    border-radius: 5px;
+    background-color: #4CAF50;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#logContainer {
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+}
+
+#logContent {
+    font-size: 0.9em;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+#logContent p {
+    margin: 5px 0;
+}

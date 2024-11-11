@@ -59,7 +59,7 @@ function seleccionAleatoria() {
 
 document.getElementById('randomButton').addEventListener('click', seleccionAleatoria);
 document.getElementById('confirmButton').addEventListener('click', () => {
-    window.location.href = '/proyectos/ut3-proyecto-final-pokemon/fase2-vs/';
+    window.location.href = '../../ut3-proyecto-final-pokemon/fase2-vs/';
 
 })
 window.onload = generateGrid;

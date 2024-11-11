@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Pokémon</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    
+<h1>Selecciona tu Pokémon</h1>
+    
+<div class="action-buttons">
+    <button id="startBattleButton">Comenzar Batalla</button>
+    <button id="randomSelectionButton">Selección Aleatoria</button>
+</div>
+<!-- Pokemon container -->
+<div class="pokemon-list" id="pokemonList"></div>
+<audio id="battleMusic" loop autoplay>
+    <source src="assets/I Play Pokémon GO 8bit Remix (152kbit_Opus).opus" type="audio/mp3"> 
+</audio>
+
+<script type="module" src="javascript/Pokemones.js"></script>
+<script type="module" src="javascript/Galletas.js"></script>
+<script type="module" src="javascript/inicio.js"></script>
+</body>
+</html>

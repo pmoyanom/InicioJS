@@ -1,0 +1,11 @@
+{
+  "name": "proyectopokemon",
+  "version": "1.0.0",
+  "description": "proyecto Pokemon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pgonzalezs26@educarex.es",
+  "license": "ISC"
+}

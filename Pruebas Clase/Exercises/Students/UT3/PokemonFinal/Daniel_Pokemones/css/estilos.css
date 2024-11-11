@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url('/assets/fondo.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    color: white; 
+}
+
+h1 {
+    color: #333;
+}
+
+
+.pokemon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    
+}
+
+.pokemon-card {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.10);
+    background-color: #4e9e3c; 
+}
+
+.pokemon-card.selected {
+    background-color: #4e9e3c; 
+    border-color: #2e7031;
+}
+
+.pokemon-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.pokemon-card h2 {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.pokemon-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.action-buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#randomSelectionButton {
+    background-color: #2196F3; 
+}
+
+#randomSelectionButton:hover {
+    background-color: #1976D2; 
+}

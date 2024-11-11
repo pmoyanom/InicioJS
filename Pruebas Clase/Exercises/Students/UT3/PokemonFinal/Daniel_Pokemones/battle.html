@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalla Pokémon</title>
+    <link rel="stylesheet" href="css/estilosBatalla.css">
+</head>
+<body>
+    <h1>¡Batalla Pokémon!</h1>
+
+    <div class="battle-container">
+        <div id="playerPokemonContainer" class="pokemon-card">
+            <h2>Tu Pokémon</h2>
+            <img id="playerImg" src="" alt="Imagen del Pokémon" width="100">
+            <p id="playerName"></p>
+            <p id="playerType"></p>
+            <p id="playerHP"></p>
+
+            <!-- Player life bar -->
+            <div id="playerHealthBarContainer" class="health-bar-container">
+                <div id="playerHealthBar" class="health-bar"></div>
+            </div>
+        </div>
+
+        <div id="enemyPokemonContainer" class="pokemon-card">
+            <h2>Pokémon del Oponente</h2>
+            <img id="enemyImg" src="" alt="Imagen del Pokémon" width="100">
+            <p id="enemyName"></p>
+            <p id="enemyType"></p>
+            <p id="enemyHP"></p>
+
+            <!-- Enemy life bar -->
+            <div id="enemyHealthBarContainer" class="health-bar-container">
+                <div id="enemyHealthBar" class="health-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button id="attackButton">Atacar</button>
+        <button id="healButton">Curarse</button>
+    </div>
+    <button id="startBattleButton" style="display:none;">Volver a la Selección de Pokémon</button>
+
+    <div id="logContainer">
+        <h2>Registro de Batalla</h2>
+        <div id="logContent" class="log-content"></div>
+    </div>
+    <div class="pokemon-list" id="pokemonList"></div>
+    <audio id="battleMusic" loop autoplay>
+        <source src="/assets/brave heart⁄デジモンアドベンチャー 8bit (128kbit_AAC).m4a" type="audio/mp3"> 
+    </audio>
+    <script type="module" src="javascript/Pokemones.js"></script>
+    <script type="module" src="javascript/Galletas.js"></script>
+    <script type="module" src="javascript/batalla.js"></script>
+</body>
+</html>

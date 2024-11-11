@@ -1,0 +1,264 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url('https://res.cloudinary.com/depaik2my/image/upload/v1730561892/DALL_E_2024-11-02_16.38.02_-_A_vibrant_fantasy-themed_background_suitable_for_an_adventure_application._The_scene_shows_a_magical_landscape_with_rolling_green_fields_tall_ancien_khwxgo.webp'); /* Cambia esta URL por una imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+h1 {
+    color: #FFD700; /* Dorado */
+    font-size: 2em;
+    margin: 20px 0;
+}
+.logo{
+    width: auto;
+    height: auto;
+}
+.pantalla {
+    margin-top: 15%;
+    margin-left: 13%;
+    width: 75%;
+    display: none;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo translúcido para contraste */
+    padding: 20px;
+    border-radius: 15px;
+}
+
+#seleccion-pokemon, #pantalla-combate, #presentacion-vs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Estilo general para todos los tipos */
+.pokemon-type {
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Estilos específicos por tipo */
+
+.pokemon-card {
+    border-radius: 8px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pokemon-type.fire {
+    background-color: #f08030;
+}
+
+.pokemon-type.water {
+    background-color: #6890f0;
+}
+
+.pokemon-type.grass {
+    background-color: #78c850;
+}
+
+.pokemon-type.electric {
+    background-color: #f8d030;
+}
+.pokemon-type.psychic{
+    background-color: palevioletred;
+}
+.pokemon-type.flying{
+    background-color: #a890f0;
+}
+.pokemon-type.dragon{
+    background-color: #7038f8;
+}
+.pokemon-type.ice{
+    background-color: #98d8d8;
+}
+.pokemon-type.normal{
+    background-color: #a8a878;
+}
+.pokemon-type.poison{
+    background-color: #a040a0;
+}
+.pokemon-type.bug{
+    background-color: #a8b820;
+}
+.pokemon-type.ground{
+    background-color: #a8a878;
+}
+.pokemon-type.fighting{
+    background-color: #c03028;
+}
+.pokemon-type.rock{
+    background-color: #b8a038;
+}
+.pokemon-type.steel{
+    background-color: #b8b8d0; ;
+}
+.pokemon-type.fairy{
+    background-color: #f0b6f0;
+}
+/* Agrega más estilos según los tipos que necesites */
+
+.pokemon-grid {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Cambiar número de columnas según el diseño */
+    gap: 10px; /* Espacio entre tarjetas */
+    padding: 20px;
+    justify-items: center;
+}
+
+.pokemon-card {
+    width: 150px; /* Ancho de las tarjetas */
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo translúcido */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.08);
+}
+
+.pokemon-card img {
+    width: 50%; /* Tamaño de la imagen */
+}
+
+.pokemon-card h3 {
+    margin: 4px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.pokemon-card p {
+    margin: 0;
+    font-size: 12px;
+    color: #555;
+}
+
+.pokemon-card.seleccionado {
+    border-color: #00ff66; /* Borde naranja intenso al seleccionar */
+    box-shadow: 0 0 62px #00ff66;
+}
+
+/* Estilos del botón "Seleccionar" */
+#btn-seleccionar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin-top: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#btn-seleccionar:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#btn-seleccionar:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Posicionamiento del botón en la parte superior */
+#seleccion-pokemon {
+    position: relative;
+}
+
+#btn-seleccionar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+#btn-seleccionar1 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin-top: 70px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+#btn-seleccionar1:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#btn-seleccionar1:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#btn-seleccionar1 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+/* Opcional: Estilo de presentación "VS" */
+#presentacion-vs h2 {
+    font-size: 3em;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+.health-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 4px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.health-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 100%; /* Inicialmente lleno */
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+.barra-vida {
+    width: 100%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.vida {
+    height: 100%;
+    background-color: green; /* Cambiar según el estado */
+    transition: width 0.5s ease;
+}
+#jugador{
+    margin-right: 70%;
+}
+#oponente{
+    margin-left: 70%;
+}
+
+#mensajes-combate {
+    background-color: #b2f195;
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    height: 200px;
+    overflow-y: auto;
+}

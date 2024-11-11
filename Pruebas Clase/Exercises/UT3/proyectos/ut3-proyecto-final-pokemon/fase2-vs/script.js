@@ -55,7 +55,7 @@ function loadDataInPage() {
 
 // Función para iniciar la batalla
 function startBattle() {
-    window.location.href = '/proyectos/ut3-proyecto-final-pokemon/fase3-combate/';
+    window.location.href = '../../ut3-proyecto-final-pokemon/fase3-combate/';
 }
 
 loadDataInPage();
