@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrastra las Palabras a sus Categorías</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .categorias {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .categoria {
+            width: 250px;
+            min-height: 250px;
+            border: 3px dashed #aaa;
+            border-radius: 10px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 10px;
+            padding: 15px;
+            background-color: #f0f4f8;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .categoria:hover {
+            background-color: #e0e6ed;
+            transform: scale(1.02);
+        }
+
+        .categoria h2 {
+            color: #007bff;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .palabra {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: grab;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .palabra:hover {
+            background-color: #f8f9fb;
+            transform: scale(1.05);
+        }
+
+        .dragging {
+            opacity: 0.5;
+        }
+
+        .correcto {
+            background-color: #c8e6c9;
+            /* Verde claro */
+            border: 1px solid #66bb6a;
+        }
+
+        .incorrecto {
+            background-color: #ffcccb;
+            /* Rojo claro */
+            border: 1px solid #e57373;
+        }
+
+        #palabras {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Arrastra las Palabras a sus Categorías</h1>
+
+    <!-- Categorías -->
+    <div class="categorias">
+
+        <div class="categoria" id="frutas" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Frutas</h2>
+        </div>
+
+        <div class="categoria" id="animales" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Animales</h2>
+        </div>
+
+        <div class="categoria" id="colores" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h2>Colores</h2>
+        </div>
+    </div>
+
+    <!-- Palabras -->
+    <div id="palabras">
+        <div class="palabra" draggable="true" ondragstart="drag(event)" id="manzana">Manzana</div>
+        <div class="palabra" draggable="true" ondragstart="drag(event)" id="perro">Perro</div>
+        <div class="palabra" draggable="true" ondragstart="drag(event)" id="rojo">Rojo</div>
+        <div class="palabra" draggable="true" ondragstart="drag(event)" id="plátano">Plátano</div>
+        <div class="palabra" draggable="true" ondragstart="drag(event)" id="gato">Gato</div>
+        <div class="palabra" draggable="true" ondragstart="drag(event)" id="azul">Azul</div>
+    </div>
+
+    <!-- Botón de Validar -->
+    <button onclick="validar()">Validar</button>
+
+    <script>
+        // Lista de categorías correctas para cada palabra
+        const categoriasCorrectas = {
+            manzana: 'frutas',
+            plátano: 'frutas',
+            perro: 'animales',
+            gato: 'animales',
+            rojo: 'colores',
+            azul: 'colores'
+        };
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+            event.target.classList.add("dragging");
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            const draggedElement = document.getElementById(data);
+            event.target.appendChild(draggedElement);
+            draggedElement.classList.remove("dragging");
+        }
+
+        function validar() {
+            let correctas = 0;
+            let total = Object.keys(categoriasCorrectas).length;
+
+            // Recorrer todas las palabras y verificar si están en la categoría correcta
+            for (const palabraId in categoriasCorrectas) {
+                const palabraElemento = document.getElementById(palabraId);
+                const categoriaCorrecta = categoriasCorrectas[palabraId];
+                const contenedorPadre = palabraElemento.parentNode.id;
+
+                if (contenedorPadre === categoriaCorrecta) {
+                    // Si está en la categoría correcta, se marca en verde
+                    palabraElemento.classList.add("correcto");
+                    palabraElemento.classList.remove("incorrecto");
+                    correctas++;
+                } else {
+                    // Si está en la categoría incorrecta, se marca en rojo
+                    palabraElemento.classList.add("incorrecto");
+                    palabraElemento.classList.remove("correcto");
+                }
+            }
+
+            // Mostrar el resultado al usuario
+            if (correctas === total) {
+                alert("¡Felicidades! Todas las palabras están en la categoría correcta.");
+            } else {
+                alert(`Has colocado ${correctas} de ${total} palabras correctamente. Intenta nuevamente.`);
+            }
+        }
+    </script>
+
+</body>
+
+</html>  

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <style>
+        .container { display: flex; gap: 10px; }
+        .dropzone { width: 200px; height: 200px; border: 2px dashed #aaa; display: flex; align-items: center; justify-content: center; }
+        .draggable { width: 100px; height: 100px; background-color: #3498db; cursor: grab; }
+        .draggable:active {
+            cursor: grabbing;
+        }
+        .dropzone.over {
+            background-color: #e1eecf;
+            border-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="draggable" draggable="true" id="draggable">Arrástrame</div>
+    <div class="dropzone" id="dropzone">Zona de destino</div>
+</div>
+
+<script>
+    // Seleccionar elementos
+const draggable = document.getElementById("draggable");
+const dropzone = document.getElementById("dropzone");
+
+// Evento para el inicio del arrastre
+draggable.addEventListener("dragstart", (event) => {
+    event.dataTransfer.setData("text/plain", event.target.id);
+    draggable.style.opacity = "0.5";
+});
+
+// Permitir que el elemento se pueda soltar en la zona de destino
+dropzone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    dropzone.style.borderColor = "#2ecc71";
+});
+
+// Evento para la acción de soltar
+dropzone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text");
+    const element = document.getElementById(data);
+    dropzone.appendChild(element);
+    element.style.opacity = "1";
+    dropzone.style.borderColor = "#aaa";
+});
+
+</script>
+
+</body>
+</html>
