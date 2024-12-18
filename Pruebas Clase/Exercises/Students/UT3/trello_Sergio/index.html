@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temas de Página</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+  <h1>Trello mejorado</h1>
+ 
+  <div class="botones">
+    <button class="oscuro" onclick="cambiarTema('oscuro')">Oscuro</button>
+    <button class="pastel" onclick="cambiarTema('pastel')">Pastel</button>
+    <button class="claro" onclick="cambiarTema('claro')">Claro</button>
+  </div>
+
+  <div class="input-container">
+    <input class="input1" type="text" placeholder="Escribe tu tarea aquí...">
+    <button class="btn-agregar">Agregar</button>
+  </div>
+  
+  <div class="container">
+    <div class="tareas" id="pendientes">
+        <h2>Tareas pendientes (<span id="contador-pendientes">0</span>)</h2>
+    </div>
+    <div class="tareas" id="en-proceso">
+        <h2>Tareas en proceso (<span id="contador-en-proceso">0</span>)</h2>
+    </div>
+    <div class="tareas" id="completas">
+        <h2>Tareas completas (<span id="contador-completas">0</span>)</h2>
+    </div>
+</div>
+
+
+
+
+  <script src="app.js"></script>
+</body>
+</html>

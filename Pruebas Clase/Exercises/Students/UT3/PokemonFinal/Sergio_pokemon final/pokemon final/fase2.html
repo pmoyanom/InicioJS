@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 2: Selección de Pokémon para el Combate</title>
+    <link rel="stylesheet" href="estilos-fase2.css">
+    <script src="fase2.js" defer></script>
+</head>
+
+<body>
+    <!-- Pantalla 2: Muestra los Pokémon seleccionados para el combate -->
+    <section id="pantalla-fase2" class="pantalla">
+        <div class="contenedor-pokemon-fase2">
+            <!-- Tarjeta del Pokémon del Jugador -->
+            <div class="pokemon-card jugador">
+                <h2 id="nombre-pokemon-jugador">Nombre del Pokémon</h2>
+                <img id="img-pokemon-jugador" src="#" alt="Pokémon del jugador">
+            </div>
+            <!-- Imagen central del enfrentamiento -->
+           
+            <!-- Tarjeta del Pokémon del Oponente -->
+            <div class="pokemon-card oponente">
+                <h2 id="nombre-pokemon-oponente">Nombre del Oponente</h2>
+                <img id="img-pokemon-oponente" src="#" alt="Pokémon del oponente">
+            </div>
+        </div>
+        <!-- Botón para iniciar la batalla -->
+        <div class="contenedor-boton">
+            <button id="boton-iniciar-combate" class="boton-accion" onclick="window.location.href='combate.html'">Iniciar Batalla</button>
+        </div>
+    </section>
+
+    <audio id="audio-fondo" autoplay loop>
+        <source src="./sonido/Voicy_Pokemon GO OST_ Battle.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combate Pokémon</title>
+    <link rel="stylesheet" href="estilos-combate.css">
+    <script src="combate.js" defer></script>
+</head>
+
+<body>
+    <!-- Pantalla de combate -->
+    <section id="pantalla-combate" class="pantalla">
+        <div class="gameboy-frame">
+            <div class="contenedor-combate">
+                <!-- Tarjeta del Pokémon del Jugador -->
+                <div class="pokemon-card jugador">
+                    <h2 id="nombre-pokemon-jugador">Nombre del Jugador</h2>
+                    <img id="img-pokemon-jugador" src="#" alt="Pokémon del jugador">
+                    <div class="barra-vida">
+                        <div id="barra-vida-jugador" class="vida"></div>
+                    </div>
+                    <div class="estadisticas">
+                        <div>HP: <span id="hp-jugador"></span></div>
+                    </div>
+                    <div class="opciones">
+                        <button id="ataque" class="boton-accion">Atacar</button>
+                        <button id="defensa" class="boton-accion">Defender</button>
+                        <button id="especial" class="boton-accion">Especial</button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta del Pokémon del Oponente -->
+                <div class="pokemon-card oponente">
+                    <h2 id="nombre-pokemon-oponente">Nombre del Oponente</h2>
+                    <img id="img-pokemon-oponente" src="#" alt="Pokémon del oponente">
+                    <div class="barra-vida">
+                        <div id="barra-vida-oponente" class="vida"></div>
+                    </div>
+                    <div class="estadisticas">
+                        <div>HP: <span id="hp-oponente"></span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Registro de eventos del combate -->
+            <textarea class="contenedor-log" id="registro-combate" readonly></textarea>
+        </div>
+    </section>
+    <div id="resultado-combate" class="resultado-combate oculto">
+        <h1 id="mensaje-resultado">Resultado</h1>
+        <button id="boton-reiniciar" class="boton-reiniciar" onclick="window.location.href='index.html'">Reiniciar</button>
+    </div>
+    <!-- Música de fondo -->
+    <audio id="audio-combate" autoplay loop>
+        <source src="./sonido/pokemon-battle.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+h1 {
+    text-align: center;
+    font-family: 'Pokemon Solid', sans-serif;
+    font-size: 2em;
+    color: #FFCB05;
+}
+img {
+ 
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+.container {
+    background-image: url("https://res.cloudinary.com/depaik2my/image/upload/v1730561892/DALL_E_2024-11-02_16.38.02_-_A_vibrant_fantasy-themed_background_suitable_for_an_adventure_application._The_scene_shows_a_magical_landscape_with_rolling_green_fields_tall_ancien_khwxgo.webp");
+    background-size: cover; /* Asegura que la imagen cubra todo el área disponible */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen para mantenerla bien ajustada */
+    min-height: 100vh; /* Hace que el fondo cubra al menos la altura completa del viewport */
+    width: 100%;
+}
+
+.lista-pokemon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.pokemon-card {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.pokemon-card img {
+    width: 80px;
+    height: 80px;
+}
+
+.pokemon-card.seleccionado {
+    border: 2px solid #FFD700;
+    transform: scale(1.05);
+}
+.estrella-shiny {
+    width: 30px;
+    height: auto;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.titulo-contenedor {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.titulo-imagen {
+    width: 200px;
+}
+
+.titulo-texto {
+    font-family: 'Pokemon Solid', sans-serif;
+    font-size: 2em;
+    color: #FFCB05;
+}
+
+/* Añadir a tu archivo estilos.css para mejorar los botones */
+button {
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#boton-siguiente {
+    background-color: #28a745; /* Verde */
+    color: #fff;
+}
+
+#boton-aleatorio {
+    background-color: #28a745; /* Azul */
+    color: #fff;
+}
+
+button:hover {
+    background-color: #28a745; /* Azul más oscuro en hover */
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Añadir un contenedor para alinear los botones */
+.contenedor-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    padding: 10px 20px;
+}
+
+.pokemon-card {
+    position: relative;
+}
+
+.shiny-star {
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+}
